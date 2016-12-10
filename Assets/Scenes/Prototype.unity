@@ -335,10 +335,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 371168421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4425aa3395112d4d9bcf96f0069ff07, type: 3}
+  m_Script: {fileID: 11500000, guid: eaf0bb78b5f54714781d239753d15b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 1359974412}
+  maxPower: 0
+  fuelEfficiency: 0
+  powerEfficiency: 0
 --- !u!1 &986640854
 GameObject:
   m_ObjectHideFlags: 0
