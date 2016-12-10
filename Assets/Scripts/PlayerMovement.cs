@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour {
         if (isWall[(int)Direction.DOWN] && vertical < 0)
             vertical = 0;
 
-        rb.MovePosition(rb.position + new Vector2(horizontal, vertical).normalized * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + new Vector2(horizontal, vertical).normalized * speed * Time.fixedDeltaTime);
 
 
     }
