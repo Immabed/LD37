@@ -5,14 +5,19 @@ using UnityEngine;
 public abstract class Subsystem : MonoBehaviour {
 
     public GameObject menu;
+    public GameObject repairMenu;
 
     // Repair Recipes
     [SerializeField]
-    protected abstract RepairRecipe[] Recipes { get; set; }
+    protected RepairRecipe[] recipes;
 
     protected RepairRecipe currentRecipe;
 
     protected bool isDamaged;
+    protected bool playerIsNearby;
+    protected PlayerController pc;
+
+    public bool IsDamaged { get { return isDamaged; } }
 
 
     protected virtual void Repair(Resource res)
@@ -21,22 +26,29 @@ public abstract class Subsystem : MonoBehaviour {
             if (res is SpareParts && currentRecipe.SparePartsNeeded > 0)
             {
                 currentRecipe.UseSpareParts();
-                res.UseResource();
             }
             else if (res is PowerCell && currentRecipe.PowerCellsNeeded > 0)
             {
                 currentRecipe.UsePowerCell();
-                res.UseResource();
             }
             else if (res is Computer && currentRecipe.ComputersNeeded > 0)
             {
                 currentRecipe.UseComputer();
-                res.UseResource();
             }
         }
         if (currentRecipe.IsCompleted())
         {
             RepairSystem();
+        }
+    }
+
+    // Function for In Game Button to Repair System
+    public void TryRepair()
+    {
+        if (playerIsNearby && pc != null)
+        {
+            Repair(pc.Item);
+            pc.RemoveResource();
         }
     }
 
@@ -46,25 +58,61 @@ public abstract class Subsystem : MonoBehaviour {
     }
 
     protected abstract void DamageSystem();
+
+    public bool PlayerCanRepair()
+    {
+        if (playerIsNearby && pc != null && pc.HasItem && isDamaged && currentRecipe.Needs(pc.Item))
+            return true;
+        else
+            return false;
+    }
+    public RepairRecipe GetRecipe()
+    {
+        RepairRecipe recipe;
+        if (isDamaged)
+        {
+            recipe = currentRecipe;
+            return recipe;
+        }
+        else
+        {
+            return new RepairRecipe(0,0,0);
+        }
+    }
         
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            menu.SetActive(true);
+            playerIsNearby = true;
+            pc = collision.gameObject.GetComponent<PlayerController>();
+            if (pc.HasItem)
+            {
+                if (isDamaged)
+                {
+                    repairMenu.SetActive(true);
+                }
+            }
+            else
+            {
+                menu.SetActive(true);
+            }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
+            playerIsNearby = false;
+            pc = null;
             menu.SetActive(false);
+            repairMenu.SetActive(false);
         }
     }
 }
 
-
+[System.Serializable]
 public struct RepairRecipe
 {
     [SerializeField] int sparePartsNeeded;
@@ -97,6 +145,25 @@ public struct RepairRecipe
     {
         if (powerCellsNeeded > 0)
             powerCellsNeeded--;
+    }
+    public bool Needs(Resource res)
+    {
+        if (res is SpareParts && sparePartsNeeded > 0)
+        {
+            return true;
+        }
+        else if (res is Computer && computersNeeded > 0)
+        {
+            return true;
+        }
+        else if (res is PowerCell && powerCellsNeeded > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public bool IsCompleted()
     {

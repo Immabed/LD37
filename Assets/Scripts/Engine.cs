@@ -27,17 +27,6 @@ public class Engine : Subsystem {
     int currentPowerLimit;
 
 
-    protected override RepairRecipe[] Recipes
-    {
-        get
-        {
-            return new RepairRecipe[2] {
-                    new RepairRecipe(3, 0, 0), new RepairRecipe(2, 1, 0) };
-        }
-        set { }
-     }
-
-
 
     public int CurrentPower { get { return currentPower; } }
 
@@ -49,6 +38,14 @@ public class Engine : Subsystem {
     protected override void RepairSystem()
     {
         base.RepairSystem();
+        SpriteRenderer sp = gameObject.GetComponentInParent<SpriteRenderer>();
+        sp.color = new Color(1, 1, 1);
+
+    }
+
+    public void DoDamage()
+    {
+        DamageSystem();
     }
 
     protected override void DamageSystem()
@@ -59,8 +56,14 @@ public class Engine : Subsystem {
         }
         else
         {
+            SpriteRenderer sp = gameObject.GetComponentInParent<SpriteRenderer>();
+            sp.color = new Color(1, 0, 0);
             isDamaged = true;
-            currentRecipe = Recipes[0];
+            currentRecipe = recipes[0];
+            if (currentRecipe.IsCompleted())
+            {
+                RepairSystem();
+            }
         }
     }
 
