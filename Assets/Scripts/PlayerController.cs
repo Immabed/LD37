@@ -9,6 +9,14 @@ public class PlayerController : MonoBehaviour {
     bool[] isWall = new bool[4];
     public Transform imageTransform;
 
+    [SerializeField]
+    private Resource spareParts;
+    [SerializeField]
+    private Resource computer;
+    [SerializeField]
+    private Resource powerCell;
+
+
     [SerializeField] private Resource item = null;
 
     public Resource Item { get { return item; } }
@@ -65,17 +73,32 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Set resource, DOESN'T account
-    public void SetResource (Resource res)
+    public void SetResource (ResourceType res)
     {
         if (item != null)
         {
-            item.UseResource();
+            item.MakeInvisible();
         }
-        item = res;
+        if (res == ResourceType.SPAREPARTS)
+        {
+            item = spareParts;
+            item.MakeVisible();
+        }
+        else if (res == ResourceType.COMPUTER)
+        {
+            item = computer;
+            item.MakeVisible();
+        }
+        else if (res == ResourceType.POWERCELL)
+        {
+            item = powerCell;
+            item.MakeVisible();
+        }
     }
 
     public void RemoveResource()
     {
+        item.MakeInvisible();
         item = null;
     }
 

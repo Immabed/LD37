@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Resource : MonoBehaviour {
+public abstract class Resource : MonoBehaviour {
 
-    [SerializeField] PlayerController pc;
+    //[SerializeField] PlayerController pc;
+
+    public abstract ResourceType Type {get; }
 
     public void MakeVisible()
     {
-        pc.SetResource(this);
         gameObject.SetActive(true);
     }
 
-    public void UseResource()
+    public void MakeInvisible()
     {
-        pc.RemoveResource();
         gameObject.SetActive(false);
     }
 
 }
+
+public enum ResourceType { NONETYPE, SPAREPARTS, COMPUTER, POWERCELL}

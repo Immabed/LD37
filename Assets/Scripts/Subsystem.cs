@@ -9,13 +9,13 @@ public abstract class Subsystem : MonoBehaviour {
 
     // Repair Recipes
     [SerializeField]
-    protected abstract RepairRecipe[] Recipes { get; set; }
+    protected RepairRecipe[] recipes;
 
     protected RepairRecipe currentRecipe;
 
     protected bool isDamaged;
-    private bool playerIsNearby;
-    private PlayerController pc;
+    protected bool playerIsNearby;
+    protected PlayerController pc;
 
     public bool IsDamaged { get { return isDamaged; } }
 
@@ -26,17 +26,14 @@ public abstract class Subsystem : MonoBehaviour {
             if (res is SpareParts && currentRecipe.SparePartsNeeded > 0)
             {
                 currentRecipe.UseSpareParts();
-                res.UseResource();
             }
             else if (res is PowerCell && currentRecipe.PowerCellsNeeded > 0)
             {
                 currentRecipe.UsePowerCell();
-                res.UseResource();
             }
             else if (res is Computer && currentRecipe.ComputersNeeded > 0)
             {
                 currentRecipe.UseComputer();
-                res.UseResource();
             }
         }
         if (currentRecipe.IsCompleted())
@@ -45,11 +42,13 @@ public abstract class Subsystem : MonoBehaviour {
         }
     }
 
+    // Function for In Game Button to Repair System
     public void TryRepair()
     {
         if (playerIsNearby && pc != null)
         {
             Repair(pc.Item);
+            pc.RemoveResource();
         }
     }
 
@@ -81,7 +80,7 @@ public abstract class Subsystem : MonoBehaviour {
         }
     }
         
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
@@ -101,7 +100,7 @@ public abstract class Subsystem : MonoBehaviour {
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
@@ -113,7 +112,7 @@ public abstract class Subsystem : MonoBehaviour {
     }
 }
 
-
+[System.Serializable]
 public struct RepairRecipe
 {
     [SerializeField] int sparePartsNeeded;
