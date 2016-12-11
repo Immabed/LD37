@@ -14,6 +14,10 @@ public class ShipStorage : Subsystem {
     int storedPowerCells;
     int storedComputers;
 
+    public int StoredSpareParts { get { return storedSpareParts; } }
+    public int StoredPowerCells { get { return storedPowerCells; } }
+    public int StoredComputers { get { return storedComputers; } }
+
     [SerializeField]
     Button getSparePartsBt;
     [SerializeField]
@@ -26,6 +30,14 @@ public class ShipStorage : Subsystem {
     Text getSparePartsTx;
     Text getPowerCellTx;
     Text getComputerTx;
+
+
+
+
+    protected override IEnumerator UpdateTimer()
+    {
+        throw new NotImplementedException();
+    }
 
     private void Awake()
     {

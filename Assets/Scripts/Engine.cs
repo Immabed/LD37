@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Engine : Subsystem {
 
-    // Max power draw
+
     [SerializeField]
-    [Range(0, 10)]
-    int maxPower;
+    EngineDamage[] damageList;
+
     // Base fuel draw per unit of power per second
     [SerializeField]
     [Range(0, 2)]
@@ -22,25 +23,56 @@ public class Engine : Subsystem {
     [Range(0, 2)]
     float fuelEfficiencyModifier;
 
-    int currentPower;
+    [SerializeField]
+    Text speedTx;
+    [SerializeField]
+    Text fuelEffTx;
 
-    int currentPowerLimit;
-
-
-
-    public int CurrentPower { get { return currentPower; } }
+    int damageLevel = -1;
 
     public float CurrentSpeed { get { return currentPower * powerEfficiency; } }
 
-    public float CurrentFuelDraw { get { return (currentPower + fuelEfficiencyModifier * (currentPower + currentPower ^ 2 - 2) / 2) * fuelEfficiency; } }
+    public float CurrentFuelDraw { get { return Mathf.Max((currentPower + fuelEfficiencyModifier * ((currentPower - 1) + (currentPower - 1) ^ 2) / 2) * fuelEfficiency, 0); } }
 
+    protected override IEnumerator UpdateTimer()
+    {
+        for (;;)
+        {
+            Debug.Log("Speed " + CurrentSpeed.ToString());
+            speedTx.text = String.Format("Speed {0:#0.#} light years per second", CurrentSpeed);
+            fuelEffTx.text = String.Format("Fuel Efficiency {0:#0.##} fuel per light year", (CurrentFuelDraw / CurrentSpeed));
+            yield return new WaitForSeconds(timeBetweenUpdates);
+        }
+    }
+
+
+    private void Awake()
+    {
+
+        if (damageList.Length != recipes.Length)
+        {
+            Debug.Log(String.Format("Engine {0} does not have equal number of repair recipes({1}) and damages({2}). ", gameObject.name, recipes.Length, damageList.Length));
+        }
+    }
 
     protected override void RepairSystem()
     {
-        base.RepairSystem();
-        SpriteRenderer sp = gameObject.GetComponentInParent<SpriteRenderer>();
-        sp.color = new Color(1, 1, 1);
-
+        if (damageLevel >= 0 && currentRecipe.IsCompleted())
+        {
+            if (damageLevel > 0)
+            {
+                currentPowerLimit += damageList[damageLevel].PowerDecrease;
+                damageLevel--;
+                currentRecipe = recipes[damageLevel];
+            }
+            else
+            {
+                currentPowerLimit = maxPower;
+                damageLevel = -1;
+                isDamaged = false;
+            }
+        }
+        UpdatePower();
     }
 
     public void DoDamage()
@@ -50,30 +82,37 @@ public class Engine : Subsystem {
 
     protected override void DamageSystem()
     {
-        if (isDamaged)
+        
+        if (damageLevel < damageList.Length - 1)
         {
-            // DO Something
-        }
-        else
-        {
-            SpriteRenderer sp = gameObject.GetComponentInParent<SpriteRenderer>();
-            sp.color = new Color(1, 0, 0);
+            Debug.Log("Damage Level" + damageLevel + ' ' + damageList.Length);
             isDamaged = true;
-            currentRecipe = recipes[0];
+            damageLevel++;
+            currentPowerLimit -= damageList[damageLevel].PowerDecrease;
+            currentRecipe = recipes[damageLevel];
             if (currentRecipe.IsCompleted())
             {
                 RepairSystem();
             }
+            if (damageList[damageLevel].IsFatal && !gm.HasResources(currentRecipe))
+            {
+                gm.EndGame("Your engines failed in deep space without replacement parts. Maybe a space probe will encounter your frozen remains in future millennia.");
+            }
         }
+        //Debug.Log("Damage Level" + damageLevel + ' ' + damageList.Length);
+        UpdatePower();
     }
+}
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+[System.Serializable]
+public struct EngineDamage
+{
+    [SerializeField]
+    int powerDecrease;
+    [SerializeField]
+    bool isFatal;
+
+    public int PowerDecrease { get { return powerDecrease; } }
+    public bool IsFatal { get { return isFatal; } }
 }

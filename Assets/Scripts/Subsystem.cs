@@ -7,9 +7,10 @@ public abstract class Subsystem : MonoBehaviour {
     public GameObject menu;
     public GameObject repairMenu;
 
-    // Repair Recipes
     [SerializeField]
-    protected RepairRecipe[] recipes;
+    protected int maxPower;
+    protected int currentPower;
+    protected int currentPowerLimit;
 
     protected RepairRecipe currentRecipe;
 
@@ -17,8 +18,55 @@ public abstract class Subsystem : MonoBehaviour {
     protected bool playerIsNearby;
     protected PlayerController pc;
 
+    [SerializeField]
+    protected GameManager gm;
+
+    [SerializeField]
+    [Range(0, 1)]
+    protected float timeBetweenUpdates;
+
+    // Repair Recipes
+    [SerializeField]
+    protected RepairRecipe[] recipes;
+
     public bool IsDamaged { get { return isDamaged; } }
 
+    public int CurrentPower { get { return currentPower; } }
+
+    protected Coroutine co;
+
+    protected abstract IEnumerator UpdateTimer();
+
+    protected virtual void Start()
+    {
+        if (timeBetweenUpdates > 0)
+            co = StartCoroutine(UpdateTimer());
+        currentPower = maxPower;
+        currentPowerLimit = maxPower;
+    }
+
+
+    protected virtual void UpdatePower()
+    {
+        if (currentPowerLimit < 0)
+        {
+            currentPowerLimit = 0;
+        }
+        else if (currentPowerLimit > maxPower)
+        {
+            currentPowerLimit = maxPower;
+        }
+        if (currentPower > currentPowerLimit)
+        {
+            currentPower = currentPowerLimit;
+        }
+        if (gm.EnergyAvailable() > 0)
+        {
+            currentPower += Mathf.Min(gm.EnergyAvailable(), currentPowerLimit - currentPower);
+        }
+        gm.UpdateSystems();
+        //TODO - implement more power management
+    }
 
     protected virtual void Repair(Resource res)
     {
@@ -66,6 +114,7 @@ public abstract class Subsystem : MonoBehaviour {
         else
             return false;
     }
+
     public RepairRecipe GetRecipe()
     {
         RepairRecipe recipe;
