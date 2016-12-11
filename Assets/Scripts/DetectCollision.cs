@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DetectCollision : MonoBehaviour {
 
-    public PlayerMovement pm;
+    public PlayerController pm;
     public Direction dir;
 
    

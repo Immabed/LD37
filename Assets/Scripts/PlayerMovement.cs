@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
     Rigidbody2D rb;
     public float speed;
     bool[] isWall = new bool[4];
     public Transform imageTransform;
+
+    private Resource item;
+
+    public Resource Item { get { return item; } }
 
 	// Use this for initialization
 	void Start () {
@@ -57,6 +61,22 @@ public class PlayerMovement : MonoBehaviour {
 
 
     }
+
+    // Set resource, DOESN'T account
+    public void SetResource (Resource res)
+    {
+        if (item != null)
+        {
+            item.UseResource();
+        }
+        item = res;
+    }
+
+    public void RemoveResource()
+    {
+        item = null;
+    }
+
     public void Collision(Direction dir, bool isTrigger )
     {
         isWall[(int)dir] = isTrigger;

@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Resource : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField] PlayerController pc;
+
+    public void MakeVisible()
+    {
+        pc.SetResource(this);
+        gameObject.SetActive(true);
+    }
+
+    public void UseResource()
+    {
+        pc.RemoveResource();
+        gameObject.SetActive(false);
+    }
+
 }
