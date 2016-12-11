@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Subsystem : MonoBehaviour {
 
     public GameObject menu;
+    public GameObject repairMenu;
 
     // Repair Recipes
     [SerializeField]
@@ -13,6 +14,10 @@ public abstract class Subsystem : MonoBehaviour {
     protected RepairRecipe currentRecipe;
 
     protected bool isDamaged;
+    private bool playerIsNearby;
+    private PlayerController pc;
+
+    public bool IsDamaged { get { return isDamaged; } }
 
 
     protected virtual void Repair(Resource res)
@@ -40,18 +45,59 @@ public abstract class Subsystem : MonoBehaviour {
         }
     }
 
+    public void TryRepair()
+    {
+        if (playerIsNearby && pc != null)
+        {
+            Repair(pc.Item);
+        }
+    }
+
     protected virtual void RepairSystem()
     {
         isDamaged = false;
     }
 
     protected abstract void DamageSystem();
+
+    public bool PlayerCanRepair()
+    {
+        if (playerIsNearby && pc != null && pc.HasItem && isDamaged && currentRecipe.Needs(pc.Item))
+            return true;
+        else
+            return false;
+    }
+    public RepairRecipe GetRecipe()
+    {
+        RepairRecipe recipe;
+        if (isDamaged)
+        {
+            recipe = currentRecipe;
+            return recipe;
+        }
+        else
+        {
+            return new RepairRecipe(0,0,0);
+        }
+    }
         
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            menu.SetActive(true);
+            playerIsNearby = true;
+            pc = collision.gameObject.GetComponent<PlayerController>();
+            if (pc.HasItem)
+            {
+                if (isDamaged)
+                {
+                    repairMenu.SetActive(true);
+                }
+            }
+            else
+            {
+                menu.SetActive(true);
+            }
         }
     }
 
@@ -59,7 +105,10 @@ public abstract class Subsystem : MonoBehaviour {
     {
         if (collision.tag == "Player")
         {
+            playerIsNearby = false;
+            pc = null;
             menu.SetActive(false);
+            repairMenu.SetActive(false);
         }
     }
 }
@@ -97,6 +146,25 @@ public struct RepairRecipe
     {
         if (powerCellsNeeded > 0)
             powerCellsNeeded--;
+    }
+    public bool Needs(Resource res)
+    {
+        if (res is SpareParts && sparePartsNeeded > 0)
+        {
+            return true;
+        }
+        else if (res is Computer && computersNeeded > 0)
+        {
+            return true;
+        }
+        else if (res is PowerCell && powerCellsNeeded > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public bool IsCompleted()
     {
