@@ -16,15 +16,16 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private Resource powerCell;
 
-
-    bool isIdle;
+    public Animator animator;
+    //bool isIdle;
+    //bool isCarry;
 
     [SerializeField] private Resource item = null;
 
     public Resource Item { get { return item; } }
 
     public bool HasItem { get { return item != null; } }
-    public bool IsIdle {  get { return isIdle; } }
+    //public bool IsIdle {  get { return isIdle; } }
 
 	// Use this for initialization
 	void Start () {
@@ -43,7 +44,8 @@ public class PlayerController : MonoBehaviour {
         // Rotation
         if (horizontal != 0f || vertical != 0f)
         {
-            isIdle = false;
+            //isIdle = false;
+            animator.SetBool("IsIdle", false);
             if (horizontal > 0f && vertical > 0f)
                 imageTransform.rotation = Quaternion.Euler(0, 0, 45);
             else if (horizontal > 0f && vertical == 0f)
@@ -63,7 +65,8 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            isIdle = true;
+            //isIdle = true;
+            animator.SetBool("IsIdle", true);
         }
 
         if (isWall[(int)Direction.RIGHT] && horizontal > 0)
@@ -102,12 +105,14 @@ public class PlayerController : MonoBehaviour {
             item = powerCell;
             item.MakeVisible();
         }
+        animator.SetBool("IsCarry", true);
     }
 
     public void RemoveResource()
     {
         item.MakeInvisible();
         item = null;
+        animator.SetBool("IsCarry", false);
     }
 
     public void Collision(Direction dir, bool isTrigger )
