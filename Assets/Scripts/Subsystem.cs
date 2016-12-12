@@ -50,12 +50,13 @@ public abstract class Subsystem : MonoBehaviour {
 
     public bool IsDamaged { get { return isDamaged; } }
 	public string ID { get { return id; } }
-    public int CurrentPower { get { return currentPower; } }
+    public int CurrentPower { get { return currentPower; } set { currentPower = value; } }
+    public int CurrentPowerLimit {  get { return CurrentPowerLimit; } }
     public int MaxPower {  get { return maxPower; } }
 	public int Cost { get { return cost; } }
 	public string Name { get { return nameOfSystem; }}
 	public string Description { get { return upgradeDescription; }}
-    public float FailureChance { get { return 1 / averageTimeUntilFailure; } }
+    public virtual float FailureChance { get { return 1 / averageTimeUntilFailure; } }
 
     protected Coroutine co;
 
