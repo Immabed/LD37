@@ -81,3 +81,16 @@ public class GameManager : MonoBehaviour {
         return power.CurrentPowerGeneration - PowerUsed;
     }
 }
+
+[System.Serializable]
+public struct UpgradeList
+{
+    [SerializeField]
+    Engine[] engines;
+    [SerializeField]
+    ShipStorage[] storages;
+    [SerializeField]
+    FuelTank[] fuelTanks;
+    [SerializeField]
+    CargoSystem cargoSystems;
+}
