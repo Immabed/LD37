@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 81e82a9ce68571349acb50861cd37306
-timeCreated: 1481509969
+timeCreated: 1481568184
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -76,10 +76,10 @@ TextureImporter:
       name: Cargo Icons_0
       rect:
         serializedVersion: 2
-        x: 44
-        y: 25
-        width: 151
-        height: 151
+        x: 89
+        y: 100
+        width: 401
+        height: 401
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -89,10 +89,10 @@ TextureImporter:
       name: Cargo Icons_1
       rect:
         serializedVersion: 2
-        x: 224
-        y: 25
-        width: 151
-        height: 151
+        x: 549
+        y: 100
+        width: 401
+        height: 401
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,10 +102,10 @@ TextureImporter:
       name: Cargo Icons_2
       rect:
         serializedVersion: 2
-        x: 404
-        y: 25
-        width: 151
-        height: 151
+        x: 1019
+        y: 100
+        width: 401
+        height: 401
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
