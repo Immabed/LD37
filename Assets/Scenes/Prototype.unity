@@ -3219,6 +3219,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 0
   gm: {fileID: 0}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
@@ -5562,6 +5563,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 2
   gm: {fileID: 538673505}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
@@ -6286,6 +6288,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 4
   gm: {fileID: 538673505}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
@@ -9563,7 +9566,16 @@ MonoBehaviour:
   cockpit: {fileID: 724764860}
   dataBank: {fileID: 0}
   lifeSupport: {fileID: 0}
+  stationNameTx: {fileID: 0}
   vendorObjects: []
+  vendorMenu: {fileID: 0}
+  stationCreditTx: {fileID: 0}
+  stationNextDestinationTx: {fileID: 0}
+  engineUpgradeLevelTx: {fileID: 0}
+  fuelUpgradeLevelTx: {fileID: 0}
+  storageLevelTx: {fileID: 0}
+  powerLevelTx: {fileID: 0}
+  cargoLevelTx: {fileID: 0}
   upgrades:
     engines:
     - {fileID: 0}
@@ -9577,16 +9589,12 @@ MonoBehaviour:
   cargoPools:
   - type: 2
     names:
-    - Construction Components
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+    - Inflatable Dinghies
+    - Space Wood
+    - ABS Plastic
+    - LaCroissant Very Sparkly Soda
+    - Coffee Mugs
+    - "\"Lumber Yard\u2122\" T-Shirts"
     isTimeSensitive: 0
     timeRange: {x: 0, y: 0}
     minimumDifficulty: 0
@@ -9598,6 +9606,266 @@ MonoBehaviour:
     damagedAtFractionRange: {x: 0.5, y: 0.65}
     ruinedAtFractionRange: {x: 0, y: 0.2}
     maxFractionalDegredationRateRange: {x: 0.016666668, y: 0.033333335}
+  - type: 1
+    names:
+    - Trilithium Steak
+    - Blue Milk
+    - Korean Beef
+    - Rice Noodles
+    - Spoiled Edible Biology Textbooks
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names:
+    - Recycled Desk Lamps
+    - Irradiated Children (dead)
+    - Burnt Cathode Ray Tubes
+    - Decomposed VHS Tubes
+    - Non-Flammable Gasoline
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 2
+    names:
+    - Recalled Car Parts
+    - AutoTuning Modules
+    - Construction Components
+    - '"I Voted" Stickers'
+    isTimeSensitive: 1
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 1
+    names:
+    - Trilithium Steak
+    - Blue Milk
+    - Korean Beef
+    - Irradiated Children (cooked)
+    - Rice Noodles
+    - Spoiled Edible Biology Textbooks
+    isTimeSensitive: 1
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names:
+    - Recalled Car Parts
+    - Weapons
+    - Non-Flammable Gasoline
+    - Irradiated Children (nearly alive)
+    isTimeSensitive: 1
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names:
+    - Superconductors
+    - Irradiated Children (alive)
+    isTimeSensitive: 1
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
   - type: 0
     names: []
     isTimeSensitive: 0
@@ -9679,6 +9947,25 @@ MonoBehaviour:
     relativeWeight: 3
   fuelPriceRange: {x: 0, y: 0}
   fuelBaseAmountRange: {x: 0, y: 0}
+  stationNames:
+  - Pond Base
+  - Empyrion Colony
+  - Zoc Station
+  - Atlas Base
+  - Trilithium Technologies Station Alpha Zeta 7
+  - BURRCO Child Irradiation Plant
+  - Eureka Shoals Medical Station
+  - Dreikanter Terminal
+  - Solifluction Station
+  - Lucid-class Station The Russian
+  - Cuesta
+  - Thalweg Outpost
+  - Bluetag Farming Station Newton
+  - PPX Consortium Headquarters
+  - "Am\xE9ile Colony"
+  - Taciturn Ltd. Station
+  baseContractDistance: 0
+  contractDistanceDoubledAtDifficulty: 0
 --- !u!4 &538673506
 Transform:
   m_ObjectHideFlags: 0
@@ -12852,6 +13139,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 1
   gm: {fileID: 538673505}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
@@ -21202,6 +21490,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 0
   gm: {fileID: 538673505}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
@@ -24355,6 +24644,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 0
   gm: {fileID: 538673505}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
