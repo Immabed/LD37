@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour {
     private FuelTank fuel;
     [SerializeField]
     private PowerGenerator power;
+    [SerializeField]
+    private CargoSystem cargo;
+    [SerializeField]
+    private ShipCommand cockpit;
+
+    int credits;
 
     private float timeScale = 1;
 
@@ -19,9 +25,18 @@ public class GameManager : MonoBehaviour {
 
     public int PowerUsed { get { return engine.CurrentPower + storage.CurrentPower + fuel.CurrentPower;  } }
 
-    int credits;
+    public float CurrentSpeed {  get { return engine.CurrentSpeed; } }
 
     public int Credits { get { return credits; } }
+
+    public void ArrivedAtDestination()
+    {
+        if (cockpit.DistanceToDestination <= 0)
+        {
+            timeScale = 0;
+            // DO SOMETHING
+        }
+    }
 
     public void ReplaceSubsystem(Subsystem sys)
     {
