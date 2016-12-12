@@ -1,0 +1,258 @@
+fileFormatVersion: 2
+guid: 29f9a02cb386e7f40b6fe371b8702a41
+timeCreated: 1481574447
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Vendor Portraits_0
+    21300002: Vendor Portraits_1
+    21300004: Vendor Portraits_2
+    21300006: Vendor Portraits_3
+    21300008: Vendor Portraits_4
+    21300010: Vendor Portraits_5
+    21300012: Vendor Portraits_6
+    21300014: Vendor Portraits_10
+    21300016: Vendor Portraits_12
+    21300018: Vendor Portraits_13
+    21300020: Vendor Portraits_14
+    21300022: Vendor Portraits_15
+    21300024: Vendor Portraits_16
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Vendor Portraits_0
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 3849
+        width: 991
+        height: 1028
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_1
+      rect:
+        serializedVersion: 2
+        x: 1998
+        y: 3849
+        width: 994
+        height: 950
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_2
+      rect:
+        serializedVersion: 2
+        x: 3309
+        y: 3849
+        width: 998
+        height: 965
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_3
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 2606
+        width: 991
+        height: 1154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_4
+      rect:
+        serializedVersion: 2
+        x: 1998
+        y: 2606
+        width: 994
+        height: 968
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_5
+      rect:
+        serializedVersion: 2
+        x: 3309
+        y: 2606
+        width: 994
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_6
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 1366
+        width: 912
+        height: 1095
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_10
+      rect:
+        serializedVersion: 2
+        x: 3309
+        y: 1366
+        width: 999
+        height: 1017
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_12
+      rect:
+        serializedVersion: 2
+        x: 1999
+        y: 1366
+        width: 993
+        height: 1050
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_13
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 123
+        width: 991
+        height: 922
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_14
+      rect:
+        serializedVersion: 2
+        x: 1999
+        y: 123
+        width: 993
+        height: 1001
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_15
+      rect:
+        serializedVersion: 2
+        x: 3309
+        y: 123
+        width: 994
+        height: 943
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Vendor Portraits_16
+      rect:
+        serializedVersion: 2
+        x: 4846
+        y: 656
+        width: 154
+        height: 575
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
