@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 50b059797ad00e542a65b1d4b34ee928
+timeCreated: 1481511816
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gotham
+  fontNames:
+  - Gotham
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4ce627c78b6410643aabeaf43e998115, type: 3}
+  - {fileID: 12800000, guid: 04bfb60fed922e94ea21bc5ba6957745, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

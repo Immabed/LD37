@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: aa7ebff7b2baa3b48a20a3bc39ccd94f
+timeCreated: 1481511820
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gotham XNarrow
+  fontNames:
+  - Gotham XNarrow
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a7d8e891adbe193458b3d937c2a7df11, type: 3}
+  - {fileID: 12800000, guid: 591342f13f98f5a40b7f45f2e54ebfb1, type: 3}
+  - {fileID: 12800000, guid: 56283c66d3a96954c9e5f536c0960ce3, type: 3}
+  - {fileID: 12800000, guid: 0b5644f72c9f4f340ae63f8e95965d98, type: 3}
+  - {fileID: 12800000, guid: 22d06fb8eb7b91142bb7360cf8fa2e6f, type: 3}
+  - {fileID: 12800000, guid: 5b11eccad5f25c543b6b5b5686bd4722, type: 3}
+  - {fileID: 12800000, guid: 569e791c4fae5064a9173402c37a30c7, type: 3}
+  - {fileID: 12800000, guid: 3b3e7afdd8661ee4d8d771c9668fe7cb, type: 3}
+  - {fileID: 12800000, guid: 7670362ecaf872a4ba62d0c27b0743aa, type: 3}
+  - {fileID: 12800000, guid: 4649401f1c68d314aab032be202fa731, type: 3}
+  - {fileID: 12800000, guid: 2031496fb89f92545829edfea4f8479f, type: 3}
+  - {fileID: 12800000, guid: 615b95ff017d9d849a22fc2087f29064, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
