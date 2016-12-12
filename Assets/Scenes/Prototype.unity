@@ -9931,7 +9931,67 @@ MonoBehaviour:
     damagedAtFractionRange: {x: 0, y: 0}
     ruinedAtFractionRange: {x: 0, y: 0}
     maxFractionalDegredationRateRange: {x: 0, y: 0}
-  vendors: []
+  vendors:
+  - sprite: {fileID: 21300000, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Bring Dingles
+    - Broob Snivels
+    - Burg Chivley
+  - sprite: {fileID: 21300002, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Ring Booers
+    - Qrob Biner
+    - Yob Dauer
+  - sprite: {fileID: 21300004, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Gud Nelzon
+    - Zus Zizwang
+    - Goose Gribdal
+  - sprite: {fileID: 21300006, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Nzzz
+    - Nibnod Zimzod
+    - Noodah Bimler
+  - sprite: {fileID: 21300008, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Gimlan Shaybrams
+    - Shamrun Absngams
+    - Cest Aux
+  - sprite: {fileID: 21300010, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Nibblin Wholejams
+    - Nabbin Wheels
+    - Nooben Dells
+  - sprite: {fileID: 21300012, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Jabbithrong Vang
+    - Jooburthin Oo
+    - Uuuerthz Vonton
+  - sprite: {fileID: 21300014, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Pants Ween
+    - Ranhce Wag
+    - Choonz Nguyen
+  - sprite: {fileID: 21300016, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Brooie Dolz
+    - Irody Bowls
+    - Dudy Coals
+  - sprite: {fileID: 21300018, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Jabl Duy
+    - Shooby Willibumz
+    - Jodl Dings
+  - sprite: {fileID: 21300020, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Lestang Rang
+    - Erererner Rerk
+    - Leadspoot Raz
+  - sprite: {fileID: 21300022, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
+    names:
+    - Grang Shallen
+    - Zag Mazias
+    - Blod
   resourcePrices:
   - type: 1
     costRange: {x: 0.7, y: 2}
