@@ -772,7 +772,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300002, guid: 3a209a58804ade34ca07f7124d1f7d7e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a209a58804ade34ca07f7124d1f7d7e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1612,7 +1612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2901961, g: 0.7607844, b: 0.9960785, a: 1}
+  m_Color: {r: 0.7411765, g: 0.7411765, b: 0.627451, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7117,7 +7117,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300002, guid: 3a209a58804ade34ca07f7124d1f7d7e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a209a58804ade34ca07f7124d1f7d7e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9803,7 +9803,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Add text here.
+  m_Text: "Resources are used to repair damaged subsystems.\r\n\r\nYou can only carry
+    one resource around your ship at a time.\r\n\r\nUpgraded lockers can carry more
+    resources. Lockers can be upgraded by VENDORS when you visit STATIONS."
 --- !u!222 &1623265213
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11892,8 +11894,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 286.4, y: -111.5}
-  m_SizeDelta: {x: 232, y: 84}
+  m_AnchoredPosition: {x: 286, y: -132}
+  m_SizeDelta: {x: 232, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2087671835
 MonoBehaviour:
@@ -11926,8 +11928,8 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: COCKPIT
+    m_LineSpacing: 0.65
+  m_Text: STORAGE LOCKER
 --- !u!222 &2087671836
 CanvasRenderer:
   m_ObjectHideFlags: 0
