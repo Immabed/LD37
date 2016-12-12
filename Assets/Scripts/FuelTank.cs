@@ -28,6 +28,9 @@ public class FuelTank : Subsystem {
     
 
     public float TotalFuelFlowRate { get { return fuelFlow + fuelLoss; } }
+    public float RoomInTank { get { return maxFuelCapacity - fuelLevel; } }
+    public float FuelLevel { get { return fuelLevel; } }
+    public int FuelCapacity { get { return maxFuelCapacity; } }
     
 
     protected override IEnumerator UpdateTimer()
@@ -65,6 +68,8 @@ public class FuelTank : Subsystem {
         fuelFlow = gm.GetFuelUse();
         fuelLevel -= gm.TimeScale * (fuelFlow + fuelLoss) * (Time.time - timeOfLastFuelUpdate);
         timeOfLastFuelUpdate = Time.time;
+
+        fuelLevel = Mathf.Min(fuelLevel, maxFuelCapacity);
         fuelTx.text = String.Format("Fuel {0:###}/{1:###}", fuelLevel, maxFuelCapacity);
     }
 
@@ -89,7 +94,7 @@ public class FuelTank : Subsystem {
         UpdatePower();
     }
 
-    protected override void DamageSystem()
+    public override void DamageSystem()
     {
         if (damageLevel < damageList.Length - 1)
         {
@@ -103,6 +108,12 @@ public class FuelTank : Subsystem {
             }
         }
         UpdatePower();
+    }
+
+    public void AddFuel(float amount)
+    {
+        fuelLevel += amount;
+        UpdateFuel();
     }
 }
 

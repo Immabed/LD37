@@ -46,7 +46,7 @@ public class DataBank : Subsystem {
         }
     }
 
-    protected override void DamageSystem()
+    public override void DamageSystem()
     {
         //System can't get damage
         isDamaged = false;

@@ -38,16 +38,16 @@ public class LifeSupport : Subsystem {
         timeOfLastUpdate = Time.time;
         for (;;)
         {
-            if (currentPower == 0 && airLevel > 0)
+            if (currentPower != maxPower && airLevel > 0)
             {
-                airLevel -= fractionAirLossPerSec * (Time.time - timeOfLastUpdate) * gm.TimeScale;
+                airLevel -= fractionAirLossPerSec * (Time.time - timeOfLastUpdate) * gm.TimeScale * (maxPower - currentPower) / maxPower;
                 if (airLevel <= 0)
                 {
                     airLevel = 0;
                     gm.EndGame("Life support failure, classic. The last thing you'll ever deliver is your dead body, how morbid.");
                 }
             }
-            else if (currentPower > 0 && airLevel < 1)
+            else if (currentPower == maxPower && airLevel < 1)
             {
                 airLevel += fractionAirGainPerSec * (Time.time - timeOfLastUpdate) * gm.TimeScale;
             }
@@ -73,7 +73,7 @@ public class LifeSupport : Subsystem {
         airLevelIndicator.value = airLevel;
     }
 
-    protected override void DamageSystem()
+    public override void DamageSystem()
     {
         isDamaged = true;
         currentPowerLimit = 0;
