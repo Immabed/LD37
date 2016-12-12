@@ -12,17 +12,23 @@ public class ShipCommand : Subsystem {
     Image progressBar;
 
     float distanceToDestination;
+    [SerializeField]
     float routeLength;
     float timeOfLastUpdate;
 
     public float DistanceToDestination {  get { return distanceToDestination; } set { routeLength = value; } }
 
+    private void Awake()
+    {
+        distanceToDestination = routeLength;
+    }
+
     void UpdateUI()
     {
-        float timeLeft = distanceToDestination / gm.CurrentSpeed;
-        string minutes = Mathf.Floor(timeLeft / 60).ToString("#0");
+        int timeLeft = (int)(distanceToDestination / gm.CurrentSpeed);
+        string minutes = Mathf.Floor(timeLeft / 60).ToString("00");
         string seconds = (timeLeft % 60).ToString("00");
-        timeTx.text = String.Format("{0}:{1} to Destination");
+        timeTx.text = String.Format("{0} min {1} sec", minutes, seconds);
 
         progressBar.fillAmount = (routeLength - distanceToDestination) / routeLength;
     }
@@ -33,6 +39,7 @@ public class ShipCommand : Subsystem {
         for (;;)
         {
             distanceToDestination -= (gm.CurrentSpeed * (Time.time - timeOfLastUpdate) * gm.TimeScale);
+            Debug.Log(distanceToDestination);
             UpdateUI();
             if (distanceToDestination <= 0)
             {
@@ -40,6 +47,7 @@ public class ShipCommand : Subsystem {
                 gm.ArrivedAtDestination();
                 yield break;
             }
+            timeOfLastUpdate = Time.time;
             yield return new WaitForSeconds(timeBetweenUpdates);
         }
         
