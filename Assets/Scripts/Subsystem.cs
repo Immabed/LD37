@@ -7,6 +7,10 @@ public abstract class Subsystem : MonoBehaviour {
     public GameObject menu;
     public GameObject repairMenu;
 
+	[SerializeField]
+	[Tooltip("Only applicable if a level 2 or better subsystem")]
+	protected Vector2 costRange;
+
     [SerializeField]
     protected int maxPower;
     protected int currentPower;
@@ -21,6 +25,17 @@ public abstract class Subsystem : MonoBehaviour {
     [SerializeField]
     protected GameManager gm;
 
+	[SerializeField]
+	protected string id;
+
+	[SerializeField]
+	[Tooltip("Used by vendors if offered as upgrade")]
+	private string nameOfSystem;
+
+	[SerializeField]
+	[Tooltip("Used by vendors if subsystem is offered as upgrade")]
+	private string upgradeDescription;
+
     [SerializeField]
     [Range(0, 1)]
     protected float timeBetweenUpdates;
@@ -30,12 +45,21 @@ public abstract class Subsystem : MonoBehaviour {
     protected RepairRecipe[] recipes;
 
     public bool IsDamaged { get { return isDamaged; } }
-
+	public string ID { get { return id; } }
     public int CurrentPower { get { return currentPower; } }
-
+	public Vector2 CostRange { get { return costRange; } }
+	public string Name { get { return nameOfSystem; }}
+	public string Description { get { return upgradeDescription; }}
     protected Coroutine co;
 
     protected abstract IEnumerator UpdateTimer();
+
+
+	public void Deactivate() {
+		menu.SetActive(false);
+		repairMenu.SetActive(false);
+		gameObject.SetActive(false);
+	}
 
     protected virtual void Start()
     {

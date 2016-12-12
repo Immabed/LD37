@@ -43,7 +43,28 @@ public class Cargo {
 
     float timeOfLastUpdate;
 
-    IEnumerator CheckPower(float timeBetweenUpdates, GameManager gm) 
+    
+
+	public Cargo (int powerNeed, int size, bool isTimeSensitive, float timeLimit, string nameOfCargo, 
+	              int maxCredits, float lateCreditsPercent, float damagedCreditsPercent, float ruinedCreditsPercent, 
+	              float damagedAtPercent, float ruinedAtPercent, float maxDegredationRate) {
+		this.powerNeed = powerNeed;
+		this.size = size;
+		this.isTimeSensitive = isTimeSensitive;
+		this.timeLimit = timeLimit;
+		this.nameOfCargo = nameOfCargo;
+		this.maxCredits = maxCredits;
+		this.lateCreditsPercent = lateCreditsPercent;
+		this.damagedCreditsPercent = damagedCreditsPercent;
+		this.ruinedCreditsPercent = ruinedCreditsPercent;
+		this.damagedAtPercent = damagedAtPercent;
+		this.ruinedAtPercent = ruinedAtPercent;
+		this.maxDegredationRate = maxDegredationRate;
+	}
+
+
+
+	IEnumerator CheckPower(float timeBetweenUpdates, GameManager gm) 
     {
         timeOfLastUpdate = Time.time;
         for (;;)
@@ -57,6 +78,7 @@ public class Cargo {
             {
                 timeLimit -= Mathf.Max(Time.time - timeOfLastUpdate, 0);
             }
+			yield return new WaitForSeconds(timeBetweenUpdates);
         }
     }
 
@@ -85,7 +107,25 @@ public class Cargo {
         }
     }
     public Sprite Sprite { get { return sprite; } }
-
-
-
 }
+
+
+[System.Serializable]
+public struct CargoPool 
+{
+	public CargoType type;
+	public string[] names;
+	public bool isTimeSensitive;
+	public Vector2 timeRange;
+	public float minimumDifficulty;
+	public Vector2 powerNeedRange;
+	public Vector2 maxCreditRange;
+	public Vector2 lateCreditFractionRange;
+	public Vector2 damagedCreditFractionRange;
+	public Vector2 ruinedCreditFractionRange;
+	public Vector2 damagedAtFractionRange;
+	public Vector2 ruinedAtFractionRange;
+	public Vector2 maxFractionalDegredationRateRange;
+}
+
+public enum CargoType { HAZARDOUS, PERISHABLE, STANDARD}

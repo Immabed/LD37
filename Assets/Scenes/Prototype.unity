@@ -925,8 +925,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 151673865}
   repairMenu: {fileID: 151673865}
+  costRange: {x: 0, y: 0}
   maxPower: 0
   gm: {fileID: 0}
+  id: 
+  nameOfSystem: 
+  upgradeDescription: 
   timeBetweenUpdates: 0
   recipes: []
   capacity: 5
@@ -1841,8 +1845,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 682712394}
   repairMenu: {fileID: 71247998}
+  costRange: {x: 0, y: 0}
   maxPower: 2
   gm: {fileID: 538673505}
+  id: 
+  nameOfSystem: 
+  upgradeDescription: 
   timeBetweenUpdates: 0.1
   recipes:
   - sparePartsNeeded: 2
@@ -2237,8 +2245,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 1577202458}
   repairMenu: {fileID: 51827150}
+  costRange: {x: 0, y: 0}
   maxPower: 4
   gm: {fileID: 538673505}
+  id: 
+  nameOfSystem: 
+  upgradeDescription: 
   timeBetweenUpdates: 0.1
   recipes:
   - sparePartsNeeded: 3
@@ -3411,6 +3423,122 @@ MonoBehaviour:
   cockpit: {fileID: 724764860}
   dataBank: {fileID: 0}
   lifeSupport: {fileID: 0}
+  vendorObjects: []
+  upgrades:
+    engines:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    storages: []
+    fuelTanks: []
+    cargoSystems: []
+    powerGenerators: []
+  cargoPools:
+  - type: 2
+    names:
+    - Construction Components
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 1, y: 2}
+    maxCreditRange: {x: 3, y: 6}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0.5, y: 0.7}
+    ruinedCreditFractionRange: {x: 0.3, y: 0.4}
+    damagedAtFractionRange: {x: 0.5, y: 0.65}
+    ruinedAtFractionRange: {x: 0, y: 0.2}
+    maxFractionalDegredationRateRange: {x: 0.016666668, y: 0.033333335}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  - type: 0
+    names: []
+    isTimeSensitive: 0
+    timeRange: {x: 0, y: 0}
+    minimumDifficulty: 0
+    powerNeedRange: {x: 0, y: 0}
+    maxCreditRange: {x: 0, y: 0}
+    lateCreditFractionRange: {x: 0, y: 0}
+    damagedCreditFractionRange: {x: 0, y: 0}
+    ruinedCreditFractionRange: {x: 0, y: 0}
+    damagedAtFractionRange: {x: 0, y: 0}
+    ruinedAtFractionRange: {x: 0, y: 0}
+    maxFractionalDegredationRateRange: {x: 0, y: 0}
+  vendors: []
+  resourcePrices:
+  - type: 1
+    costRange: {x: 0.7, y: 2}
+    amountForSale: {x: 0, y: 0}
+    relativeWeight: 10
+  - type: 2
+    costRange: {x: 2, y: 4}
+    amountForSale: {x: 0, y: 0}
+    relativeWeight: 5
+  - type: 3
+    costRange: {x: 4, y: 6}
+    amountForSale: {x: 0, y: 0}
+    relativeWeight: 3
+  fuelPriceRange: {x: 0, y: 0}
+  fuelBaseAmountRange: {x: 0, y: 0}
 --- !u!4 &538673506
 Transform:
   m_ObjectHideFlags: 0
@@ -4287,8 +4415,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 819425710}
   repairMenu: {fileID: 822497893}
+  costRange: {x: 0, y: 0}
   maxPower: 1
   gm: {fileID: 538673505}
+  id: 
+  nameOfSystem: 
+  upgradeDescription: 
   timeBetweenUpdates: 0.1
   recipes: []
   timeTx: {fileID: 974475261}
@@ -5029,7 +5161,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 0}
-  m_Children: [{fileID: 351281837}]
+  m_Children:
+  - {fileID: 351281837}
   m_Father: {fileID: 1633413740}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5977,74 +6110,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 917037880}
---- !u!1 &961562329
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 961562330}
-  - component: {fileID: 961562332}
-  - component: {fileID: 961562331}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &961562330
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 961562329}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 351281837}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &961562331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 961562329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.69803923, g: 0.5803922, b: 0.882353, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 957ec67e53fa6bc408fa78017561d86b, type: 3}
-  m_Type: 3
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 0
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &961562332
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 961562329}
 --- !u!1 &926677860
 GameObject:
   m_ObjectHideFlags: 0
@@ -6187,6 +6252,74 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 955699077}
+--- !u!1 &961562329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 961562330}
+  - component: {fileID: 961562332}
+  - component: {fileID: 961562331}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &961562330
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 961562329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 351281837}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1200, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &961562331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 961562329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 957ec67e53fa6bc408fa78017561d86b, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &961562332
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 961562329}
 --- !u!1 &974475259
 GameObject:
   m_ObjectHideFlags: 0
@@ -7255,8 +7388,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 367851150}
   repairMenu: {fileID: 1286645500}
+  costRange: {x: 0, y: 0}
   maxPower: 0
   gm: {fileID: 538673505}
+  id: 
+  nameOfSystem: 
+  upgradeDescription: 
   timeBetweenUpdates: 0
   recipes: []
   damageList: []
@@ -8220,8 +8357,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 900318861}
   repairMenu: {fileID: 602220162}
+  costRange: {x: 0, y: 0}
   maxPower: 0
   gm: {fileID: 538673505}
+  id: 
+  nameOfSystem: 
+  upgradeDescription: 
   timeBetweenUpdates: 0
   recipes: []
   damageList: []
