@@ -17,11 +17,14 @@ public class PlayerController : MonoBehaviour {
     private Resource powerCell;
 
 
+    bool isIdle;
+
     [SerializeField] private Resource item = null;
 
     public Resource Item { get { return item; } }
 
     public bool HasItem { get { return item != null; } }
+    public bool IsIdle {  get { return isIdle; } }
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +43,7 @@ public class PlayerController : MonoBehaviour {
         // Rotation
         if (horizontal != 0f || vertical != 0f)
         {
+            isIdle = false;
             if (horizontal > 0f && vertical > 0f)
                 imageTransform.rotation = Quaternion.Euler(0, 0, 45);
             else if (horizontal > 0f && vertical == 0f)
@@ -56,6 +60,10 @@ public class PlayerController : MonoBehaviour {
                 imageTransform.rotation = Quaternion.Euler(0, 0, 270);
             else if (horizontal > 0f && vertical < 0f)
                 imageTransform.rotation = Quaternion.Euler(0, 0, 315);
+        }
+        else
+        {
+            isIdle = true;
         }
 
         if (isWall[(int)Direction.RIGHT] && horizontal > 0)
