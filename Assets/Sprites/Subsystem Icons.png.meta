@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3a209a58804ade34ca07f7124d1f7d7e
-timeCreated: 1481505277
+timeCreated: 1481511570
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -12,6 +12,7 @@ TextureImporter:
     21300010: Subsystem Icons_5
     21300012: Subsystem Icons_6
     21300014: Subsystem Icons_7
+    21300016: Subsystem Icons_8
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -170,9 +171,9 @@ TextureImporter:
       name: Subsystem Icons_5
       rect:
         serializedVersion: 2
-        x: 787
+        x: 793
         y: 443
-        width: 313
+        width: 314
         height: 314
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -197,6 +198,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 443
+        y: 100
+        width: 314
+        height: 313
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Subsystem Icons_8
+      rect:
+        serializedVersion: 2
+        x: 793
         y: 100
         width: 314
         height: 313

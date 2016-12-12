@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: 629cd25601b5cf041b24b90f3086770b
+timeCreated: 1481511817
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gotham Narrow
+  fontNames:
+  - Gotham Narrow
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 53c0ed5105b0d2543833ac380298aa11, type: 3}
+  - {fileID: 12800000, guid: 38b0f8b16dd4190499924b7337acba82, type: 3}
+  - {fileID: 12800000, guid: 37d29ed2cb18723468641c6a64c26164, type: 3}
+  - {fileID: 12800000, guid: 134f74f2e15e01341a66864e5c34ddef, type: 3}
+  - {fileID: 12800000, guid: 0bc61fc9315a44149a142c147fc2594b, type: 3}
+  - {fileID: 12800000, guid: 19e232cf15277ff4da4c04c506073a2b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
