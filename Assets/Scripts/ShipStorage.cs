@@ -52,6 +52,8 @@ public class ShipStorage : Subsystem {
 
 
     public bool IsFull { get { return !((storedComputers + storedSpareParts + storedPowerCells) < capacity); } }
+    public int RoomLeft { get { return capacity - (storedComputers + storedPowerCells + storedSpareParts); } }
+    public int MaxCapacity { get { return capacity; } }
 
 
 
@@ -80,14 +82,19 @@ public class ShipStorage : Subsystem {
 
     public void AddResource(ResourceType res)
     {
-        if (!IsFull)
+        AddResource(res, 1);
+    }
+
+    public void AddResource(ResourceType res, int amount)
+    {
+        if (amount <= RoomLeft)
         {
             if (res == ResourceType.SPAREPARTS)
-                storedSpareParts++;
+                storedSpareParts += amount;
             else if (res == ResourceType.POWERCELL)
-                storedPowerCells++;
+                storedPowerCells += amount;
             else if (res == ResourceType.COMPUTER)
-                storedComputers++;
+                storedComputers += amount;
         }
         UpdateUI();
     }
@@ -178,7 +185,7 @@ public class ShipStorage : Subsystem {
     }
 
 
-    protected override void DamageSystem()
+    public override void DamageSystem()
     {
         // Do nothing, can't be damaged.
     }

@@ -20,7 +20,14 @@ public class PowerGenerator : Subsystem {
     Text powerTx;
 
     public int CurrentPowerGeneration { get { return currentPowerGeneration; } }
+    public int MaxPowerGeneration { get { return maxPowerGeneration; } }
 
+
+
+    public void CopyPowerUsage(PowerGenerator gen)
+    {
+        // IMPLEMENT
+    }
 
     private void Awake()
     {
@@ -70,7 +77,7 @@ public class PowerGenerator : Subsystem {
         throw new NotImplementedException();
     }
 
-    protected override void DamageSystem()
+    public override void DamageSystem()
     {
         if (damageLevel < damageList.Length - 1)
         {

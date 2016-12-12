@@ -2,9 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+    //Subsystems
+    [Header("Subsystems")]
     [SerializeField]
     private Engine engine;
     [SerializeField]
@@ -21,9 +24,33 @@ public class GameManager : MonoBehaviour {
     private DataBank dataBank;
     [SerializeField]
     private LifeSupport lifeSupport;
-	[SerializeField]
+
+    //Station menus
+    [Header("Station Menu Items")]
+    [SerializeField]
+    Text stationNameTx;
+    [SerializeField]
 	Vendor[] vendorObjects;
-	[SerializeField]
+    [SerializeField]
+    GameObject vendorMenu;
+    [SerializeField]
+    Text stationCreditTx;
+    [SerializeField]
+    Text stationNextDestinationTx;
+    [SerializeField]
+    Text engineUpgradeLevelTx;
+    [SerializeField]
+    Text fuelUpgradeLevelTx;
+    [SerializeField]
+    Text storageLevelTx;
+    [SerializeField]
+    Text powerLevelTx;
+    [SerializeField]
+    Text cargoLevelTx;
+
+    // Pools and info
+    [Header("Random Generation Information")]
+    [SerializeField]
 	UpgradeList upgrades;
 	[SerializeField]
 	CargoPool[] cargoPools;
@@ -35,7 +62,26 @@ public class GameManager : MonoBehaviour {
 	Vector2 fuelPriceRange;
 	[SerializeField]
 	Vector2 fuelBaseAmountRange;
+    [SerializeField]
+    string[] stationNames;
 
+    //Assorted Info
+    [Header("Assorted other Info")]
+    [SerializeField]
+    int baseContractDistance;
+    [SerializeField]
+    [Tooltip("Distances are doubled by this difficulty level")]
+    int contractDistanceDoubledAtDifficulty;
+
+
+
+    int distanceToNextStation;
+
+    bool engineHasFailed;
+    bool fuelHasFailed;
+    bool powerHasFailed;
+    bool cargoHasFailed;
+    bool lifeSupportHasFailed;
 
 
     int credits;
@@ -48,6 +94,9 @@ public class GameManager : MonoBehaviour {
     public float CurrentSpeed {  get { return engine.CurrentSpeed; } }
 	public int Credits { get { return credits; } }
     public int CargoDelivered {  get { return cargoDelivered; } }
+    public int StorageAvailable {  get { return storage.RoomLeft; } }
+    public int CargoRoomAvailable {  get { return cargo.CargoRoomAvailable; } }
+    public float FuelTankRoom {  get { return fuel.RoomInTank; } }
 
 
 
@@ -57,16 +106,54 @@ public class GameManager : MonoBehaviour {
 
 
 
+    #region vendorCode
+    public void LeaveStation()
+    {
+        timeScale = 1;
+        vendorMenu.SetActive(false);
+    }
 
-	public void ArrivedAtDestination()
+    public void UpdateStationUI()
+    {
+        stationCreditTx.text = credits.ToString();
+        stationNextDestinationTx.text = String.Format("Next station in {0} light years", distanceToNextStation);
+        engineUpgradeLevelTx.text = String.Format("{0} - {1} power.", engine.Name, engine.MaxPower);
+        fuelUpgradeLevelTx.text = String.Format("{0} - {1}/{2} fuel", fuel.Name, fuel.FuelLevel, fuel.FuelCapacity);
+        cargoLevelTx.text = String.Format("{0} - {1}/{2} cargo capacity", cargo.Name, cargo.CargoCapacity - cargo.CargoRoomAvailable, cargo.CargoCapacity);
+        powerLevelTx.text = String.Format("{0} - {1}/{2} power output", power.Name, power.CurrentPowerGeneration, power.MaxPowerGeneration);
+        storageLevelTx.text = String.Format("{0} - {1}/{2} capacity", storage.Name, storage.MaxCapacity - storage.RoomLeft, storage.MaxCapacity);
+    }
+
+    public void ArrivedAtDestination()
 	{
 		if (cockpit.DistanceToDestination <= 0)
 		{
 			timeScale = 0;
+            foreach (Vendor vendor in vendorObjects)
+            {
+                vendor.PickSelection();
+            }
+            stationNameTx.text = stationNames[(int)UnityEngine.Random.Range(0, stationNames.Length)];
+
 			// Add to cargo deliverd
 			credits += cargo.CollectCargo(); // Implement something interesting
-			// DO SOMETHING
-		}
+                                             // DO SOMETHING
+            // SET NEXT DESTINATION DISTANCE
+            distanceToNextStation = (int)(baseContractDistance * (Difficulty() / contractDistanceDoubledAtDifficulty + 1));
+
+            // Reset failures
+            engineHasFailed = false;
+            fuelHasFailed = false;
+            powerHasFailed = false;
+            cargoHasFailed = false;
+            lifeSupportHasFailed = false;
+
+
+
+            // Update and display UI
+            UpdateStationUI();
+            vendorMenu.SetActive(true);
+        }
 	}
 
 	public int EngineLevel 
@@ -243,7 +330,9 @@ public class GameManager : MonoBehaviour {
 			systems[numberOfUpgradesAvailable] = upgrades.cargoSystems[CargoLevel + 1];
 			numberOfUpgradesAvailable++;
 		}
-		return systems[(int)UnityEngine.Random.Range(0, numberOfUpgradesAvailable)];
+		var sys = systems[(int)UnityEngine.Random.Range(0, numberOfUpgradesAvailable)];
+        sys.GenerateCost();
+        return sys;
 	}
 
 	public VendorAndName GenerateVendor() {
@@ -267,8 +356,102 @@ public class GameManager : MonoBehaviour {
 	}
 
 
+    public bool BuyFuel(FuelSale fs)
+    {
+        if (fs.cost <= credits && fs.amount <= fuel.RoomInTank)
+        {
+            credits -= fs.cost;
+            fuel.AddFuel(fs.amount);
+            UpdateStationUI();
+            return true;
+        }
+        else
+            return false;
+    }
 
-	// SUBSYSTEM CODE
+    public bool BuyUpgrade(Subsystem sys)
+    {
+        if (sys != null && sys.Cost <= credits)
+        {
+            credits -= sys.Cost;
+            ReplaceSubsystem(sys);
+            UpdateStationUI();
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public bool BuyResource(ResourceForSale res)
+    {
+        if (res.cost <= credits && res.amount <= storage.RoomLeft)
+        {
+            credits -= res.cost;
+            storage.AddResource(res.type, res.amount);
+            UpdateStationUI();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool AcceptCargo(Cargo car)
+    {
+        if (cargo.CargoRoomAvailable >= car.Size)
+        {
+            cargo.AddCargo(car);
+            UpdateStationUI();
+            return true;
+        }
+        else return false;
+    }
+    #endregion
+
+
+    #region subsystemCode
+    // SUBSYSTEM CODE
+
+
+    private IEnumerator DamageTimer(float timeStep)
+    {
+        for (;;)
+        {
+            DamageSystem(timeStep);
+            yield return new WaitForSeconds(timeStep);
+        }
+    }
+
+    private void DamageSystem(float timeStep)
+    {
+        if (!engineHasFailed && UnityEngine.Random.value < engine.FailureChance * timeScale * timeStep)
+        {
+            engineHasFailed = true;
+            engine.DamageSystem();
+        }
+        if (!fuelHasFailed && UnityEngine.Random.value < fuel.FailureChance * timeScale * timeStep)
+        {
+            fuelHasFailed = true;
+            fuel.DamageSystem();
+        }
+        if (!cargoHasFailed && UnityEngine.Random.value < cargo.FailureChance * timeScale * timeStep)
+        {
+            cargoHasFailed = true;
+            cargo.DamageSystem();
+        }
+        if (!powerHasFailed && UnityEngine.Random.value < power.FailureChance * timeScale * timeStep)
+        {
+            engineHasFailed = true;
+            power.DamageSystem();
+        }
+        if (!lifeSupportHasFailed && UnityEngine.Random.value < lifeSupport.FailureChance * timeScale * timeStep)
+        {
+            lifeSupportHasFailed = true;
+            lifeSupport.DamageSystem();
+        }
+        UpdateSystems();
+    }
 
     public void ReplaceSubsystem(Subsystem sys)
     {
@@ -280,14 +463,34 @@ public class GameManager : MonoBehaviour {
 		}
 		else if (sys is CargoSystem)
 		{
+            (sys as CargoSystem).GetCargoFromCargoSystem(cargo);
 			cargo.Deactivate();
 			cargo = sys as CargoSystem;
 			cargo.gameObject.SetActive(true);
 		}
-		else if (sys is CargoSystem)
+		else if (sys is ShipStorage)
 		{
-			cargo = sys as CargoSystem;
+            var sysStore = sys as ShipStorage;
+            sysStore.AddResource(ResourceType.SPAREPARTS, storage.StoredSpareParts);
+            sysStore.AddResource(ResourceType.COMPUTER, storage.StoredComputers);
+            sysStore.AddResource(ResourceType.POWERCELL, storage.StoredPowerCells);
+            storage = sysStore;
 		}
+        else if (sys is FuelTank)
+        {
+            (sys as FuelTank).AddFuel(fuel.FuelLevel);
+            fuel.Deactivate();
+            fuel = sys as FuelTank;
+            fuel.gameObject.SetActive(true);
+        }
+        else if (sys is PowerGenerator)
+        {
+            (sys as PowerGenerator).CopyPowerUsage(power);
+            power.Deactivate();
+            power = sys as PowerGenerator;
+            power.gameObject.SetActive(true);
+        }
+
     }
 
     public float GetFuelUse()
@@ -316,7 +519,8 @@ public class GameManager : MonoBehaviour {
     public int EnergyAvailable()
     {
         return power.CurrentPowerGeneration - PowerUsed;
-    } 
+    }
+    #endregion
 }
 
 [System.Serializable]

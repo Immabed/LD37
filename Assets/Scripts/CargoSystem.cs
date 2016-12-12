@@ -23,7 +23,8 @@ public class CargoSystem : Subsystem {
 
 
 
-	int PowerNeed {
+    public int CargoCapacity { get { return cargoCapacity; } }
+	public int PowerNeed {
 		get { 
 			int powerNeed = 0;
 			for (int i = 0; i < cargoUsed; i++) {
@@ -34,7 +35,7 @@ public class CargoSystem : Subsystem {
 		}
 	}
 
-    int CargoRoomAvailable { get {
+    public int CargoRoomAvailable { get {
             UpdateCargoUsed();
             return cargoCapacity - cargoUsed;
         } }
@@ -80,6 +81,16 @@ public class CargoSystem : Subsystem {
             Debug.LogWarning(String.Format("Cargo System {0} does not have equal number of repair recipes({1}) and damages({2}). ", gameObject.name, recipes.Length, damageList.Length));
         }
         cargo = new Cargo[cargoCapacity];
+    }
+
+    public void GetCargoFromCargoSystem(CargoSystem cargo)
+    {
+        cargoUsed = 0;
+        for (int i = 0; i < cargo.cargoUsed; i++)
+        {
+            AddCargo(cargo.cargo[i]);
+            i += cargo.cargo[i].Size - 1;
+        }
     }
 
     public void AddCargo(Cargo car)
@@ -143,7 +154,7 @@ public class CargoSystem : Subsystem {
 		throw new System.NotImplementedException ();
 	}
 
-	protected override void DamageSystem ()
+	public override void DamageSystem ()
 	{
         if (damageLevel < damageList.Length - 1)
         {

@@ -10,6 +10,7 @@ public abstract class Subsystem : MonoBehaviour {
 	[SerializeField]
 	[Tooltip("Only applicable if a level 2 or better subsystem")]
 	protected Vector2 costRange;
+    protected int cost;
 
     [SerializeField]
     protected int maxPower;
@@ -24,6 +25,9 @@ public abstract class Subsystem : MonoBehaviour {
 
     [SerializeField]
     protected GameManager gm;
+
+    [SerializeField]
+    float averageTimeUntilFailure;
 
 	[SerializeField]
 	protected string id;
@@ -47,9 +51,12 @@ public abstract class Subsystem : MonoBehaviour {
     public bool IsDamaged { get { return isDamaged; } }
 	public string ID { get { return id; } }
     public int CurrentPower { get { return currentPower; } }
-	public Vector2 CostRange { get { return costRange; } }
+    public int MaxPower {  get { return maxPower; } }
+	public int Cost { get { return cost; } }
 	public string Name { get { return nameOfSystem; }}
 	public string Description { get { return upgradeDescription; }}
+    public float FailureChance { get { return 1 / averageTimeUntilFailure; } }
+
     protected Coroutine co;
 
     protected abstract IEnumerator UpdateTimer();
@@ -67,6 +74,12 @@ public abstract class Subsystem : MonoBehaviour {
             co = StartCoroutine(UpdateTimer());
         currentPower = maxPower;
         currentPowerLimit = maxPower;
+        cost = Mathf.RoundToInt(Random.Range(costRange.x, costRange.y));
+    }
+
+    public void GenerateCost()
+    {
+        cost = Mathf.RoundToInt(Random.Range(costRange.x, costRange.y));
     }
 
 
@@ -112,6 +125,7 @@ public abstract class Subsystem : MonoBehaviour {
         {
             RepairSystem();
         }
+        UpdatePower();
     }
 
     // Function for In Game Button to Repair System
@@ -129,7 +143,7 @@ public abstract class Subsystem : MonoBehaviour {
         isDamaged = false;
     }
 
-    protected abstract void DamageSystem();
+    public abstract void DamageSystem();
 
     public bool PlayerCanRepair()
     {

@@ -53,7 +53,7 @@ public class ShipCommand : Subsystem {
         
     }
 
-    protected override void DamageSystem()
+    public override void DamageSystem()
     {
         isDamaged = false;
         // Does not take damage

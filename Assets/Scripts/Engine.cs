@@ -75,12 +75,7 @@ public class Engine : Subsystem {
         UpdatePower();
     }
 
-    public void DoDamage()
-    {
-        DamageSystem();
-    }
-
-    protected override void DamageSystem()
+    public override void DamageSystem()
     {
         
         if (damageLevel < damageList.Length - 1)
