@@ -32518,7 +32518,25 @@ MonoBehaviour:
     damagedAtFractionRange: {x: 0, y: 0}
     ruinedAtFractionRange: {x: 0, y: 0}
     maxFractionalDegredationRateRange: {x: 0, y: 0}
-  vendors: []
+  vendors: [{sprite: {fileID: 21300000, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3},
+      names: [Brood Snchurs, Brudy Singljazzens, Bridl Shaves]}, {sprite: {fileID: 21300002,
+        guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}, names: [Noobin Dells, Nibblin
+          Wholejams, Nabbin Wheels]}, {sprite: {fileID: 21300004, guid: 29f9a02cb386e7f40b6fe371b8702a41,
+        type: 3}, names: [Nibnog Zimziezee, Nzzz, Noooh Zinman]}, {sprite: {fileID: 21300006,
+        guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}, names: [Joblethinz Vang,
+        Janglethun Oo, Jubthn Vonton]}, {sprite: {fileID: 21300008, guid: 29f9a02cb386e7f40b6fe371b8702a41,
+        type: 3}, names: [Shamrun Shaybrams, Cest Aux, Gamrun Absgam]}, {sprite: {
+        fileID: 21300010, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}, names: [
+        Roobert Dooer, Rang Dauer, Gween Gwanza]}, {sprite: {fileID: 21300012, guid: 29f9a02cb386e7f40b6fe371b8702a41,
+        type: 3}, names: [Gud Grindlewang, Goosebag Nelzon, Guuz Goodwuz]}, {sprite: {
+        fileID: 21300014, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}, names: [
+        Lespang Rang, Lespoot Raz, Ererernah Rernkern]}, {sprite: {fileID: 21300016,
+        guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}, names: [Broodle Dolez, Irod
+          Bowls, Brindle Shoals]}, {sprite: {fileID: 21300018, guid: 29f9a02cb386e7f40b6fe371b8702a41,
+        type: 3}, names: [Joody Duy, Jables Willyangs, Jabbi Ding]}, {sprite: {fileID: 21300020,
+        guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}, names: [Pants Ween, Chamz
+          Won, Hence Nguyen]}, {sprite: {fileID: 21300022, guid: 29f9a02cb386e7f40b6fe371b8702a41,
+        type: 3}, names: [Zad Maziaz, Blod, Zoob Machichas]}]
   resourcePrices:
   - type: 1
     costRange: {x: 0.7, y: 2}
