@@ -77,7 +77,7 @@ public class CargoSystem : Subsystem {
         // Check for recipes.
         if (damageList.Length != recipes.Length)
         {
-            Debug.Log(String.Format("Cargo System {0} does not have equal number of repair recipes({1}) and damages({2}). ", gameObject.name, recipes.Length, damageList.Length));
+            Debug.LogWarning(String.Format("Cargo System {0} does not have equal number of repair recipes({1}) and damages({2}). ", gameObject.name, recipes.Length, damageList.Length));
         }
         cargo = new Cargo[cargoCapacity];
     }

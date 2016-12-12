@@ -16,8 +16,13 @@ public class GameManager : MonoBehaviour {
     private CargoSystem cargo;
     [SerializeField]
     private ShipCommand cockpit;
+    [SerializeField]
+    private DataBank dataBank;
+    [SerializeField]
+    private LifeSupport lifeSupport;
 
     int credits;
+    int cargoDelivered;
 
     private float timeScale = 1;
 
@@ -28,6 +33,8 @@ public class GameManager : MonoBehaviour {
     public float CurrentSpeed {  get { return engine.CurrentSpeed; } }
 
     public int Credits { get { return credits; } }
+
+    public int CargoDelivered {  get { return cargoDelivered; } }
 
     public void ArrivedAtDestination()
     {
