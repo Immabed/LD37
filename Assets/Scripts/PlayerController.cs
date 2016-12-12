@@ -17,8 +17,7 @@ public class PlayerController : MonoBehaviour {
     private Resource powerCell;
 
     public Animator animator;
-    //bool isIdle;
-    //bool isCarry;
+
 
     [SerializeField] private Resource item = null;
 
@@ -44,7 +43,6 @@ public class PlayerController : MonoBehaviour {
         // Rotation
         if (horizontal != 0f || vertical != 0f)
         {
-            //isIdle = false;
             animator.SetBool("IsIdle", false);
             if (horizontal > 0f && vertical > 0f)
                 imageTransform.rotation = Quaternion.Euler(0, 0, 45);
@@ -65,7 +63,6 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            //isIdle = true;
             animator.SetBool("IsIdle", true);
         }
 

@@ -11,6 +11,9 @@ public class FuelTank : Subsystem {
     // Fuel capacity of tank
     [SerializeField]
     int maxFuelCapacity;
+    [SerializeField]
+    [Tooltip("Each lost power level increases the failure chance X this modifer")]
+    float failureRateModifier;
     // Amount of fuel in tanks
     float fuelLevel;
     // Rate of fuel to engines
@@ -31,7 +34,14 @@ public class FuelTank : Subsystem {
     public float RoomInTank { get { return maxFuelCapacity - fuelLevel; } }
     public float FuelLevel { get { return fuelLevel; } }
     public int FuelCapacity { get { return maxFuelCapacity; } }
-    
+    public override float FailureChance
+    {
+        get
+        {
+            return base.FailureChance * Mathf.Pow(failureRateModifier, MaxPower - currentPower);
+        }
+    }
+
 
     protected override IEnumerator UpdateTimer()
     {

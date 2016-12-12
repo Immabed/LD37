@@ -3219,6 +3219,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 0
   gm: {fileID: 0}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
@@ -5562,6 +5563,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 2
   gm: {fileID: 538673505}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
@@ -5577,6 +5579,7 @@ MonoBehaviour:
   - fuelLossPerSecond: 0.3
   - fuelLossPerSecond: 0.5
   maxFuelCapacity: 100
+  failureRateModifier: 0
   fuelTx: {fileID: 1696141237}
 --- !u!61 &324147448
 BoxCollider2D:
@@ -6286,6 +6289,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 4
   gm: {fileID: 538673505}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
@@ -9563,7 +9567,16 @@ MonoBehaviour:
   cockpit: {fileID: 724764860}
   dataBank: {fileID: 0}
   lifeSupport: {fileID: 0}
+  stationNameTx: {fileID: 0}
   vendorObjects: []
+  vendorMenu: {fileID: 0}
+  stationCreditTx: {fileID: 0}
+  stationNextDestinationTx: {fileID: 0}
+  engineUpgradeLevelTx: {fileID: 0}
+  fuelUpgradeLevelTx: {fileID: 0}
+  storageLevelTx: {fileID: 0}
+  powerLevelTx: {fileID: 0}
+  cargoLevelTx: {fileID: 0}
   upgrades:
     engines:
     - {fileID: 0}
@@ -9679,6 +9692,9 @@ MonoBehaviour:
     relativeWeight: 3
   fuelPriceRange: {x: 0, y: 0}
   fuelBaseAmountRange: {x: 0, y: 0}
+  stationNames: []
+  baseContractDistance: 0
+  contractDistanceDoubledAtDifficulty: 0
 --- !u!4 &538673506
 Transform:
   m_ObjectHideFlags: 0
@@ -12852,6 +12868,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 1
   gm: {fileID: 538673505}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
@@ -21202,6 +21219,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 0
   gm: {fileID: 538673505}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
@@ -24355,6 +24373,7 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 0
   gm: {fileID: 538673505}
+  averageTimeUntilFailure: 0
   id: 
   nameOfSystem: 
   upgradeDescription: 
