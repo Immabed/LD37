@@ -50,7 +50,7 @@ public class FuelTank : Subsystem {
         fuelLevel = maxFuelCapacity;
         if (damageList.Length != recipes.Length)
         {
-            Debug.Log(String.Format("FuelTank {0} does not have equal number of repair recipes({1}) and damages({2}). ", gameObject.name, recipes.Length, damageList.Length));
+            Debug.LogWarning(String.Format("FuelTank {0} does not have equal number of repair recipes({1}) and damages({2}). ", gameObject.name, recipes.Length, damageList.Length));
         }
     }
 

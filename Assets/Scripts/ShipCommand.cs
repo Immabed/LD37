@@ -10,6 +10,7 @@ public class ShipCommand : Subsystem {
     Text timeTx;
     [SerializeField]
     Image progressBar;
+
     float distanceToDestination;
     float routeLength;
     float timeOfLastUpdate;
@@ -18,7 +19,12 @@ public class ShipCommand : Subsystem {
 
     void UpdateUI()
     {
-        timeTx.text = String.Format("Placeholder");
+        float timeLeft = distanceToDestination / gm.CurrentSpeed;
+        string minutes = Mathf.Floor(timeLeft / 60).ToString("#0");
+        string seconds = (timeLeft % 60).ToString("00");
+        timeTx.text = String.Format("{0}:{1} to Destination");
+
+        progressBar.fillAmount = (routeLength - distanceToDestination) / routeLength;
     }
 
     protected override IEnumerator UpdateTimer()

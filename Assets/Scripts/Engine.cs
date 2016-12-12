@@ -51,7 +51,7 @@ public class Engine : Subsystem {
 
         if (damageList.Length != recipes.Length)
         {
-            Debug.Log(String.Format("Engine {0} does not have equal number of repair recipes({1}) and damages({2}). ", gameObject.name, recipes.Length, damageList.Length));
+            Debug.LogWarning(String.Format("Engine {0} does not have equal number of repair recipes({1}) and damages({2}). ", gameObject.name, recipes.Length, damageList.Length));
         }
     }
 
