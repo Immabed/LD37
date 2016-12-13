@@ -27,6 +27,12 @@ public class FuelTank : Subsystem {
 
     [SerializeField]
     Text fuelTx;
+    [SerializeField]
+    Image fuelLevelSlider;
+    [SerializeField]
+    Text fuelRateTx;
+    [SerializeField]
+    Text powerUseTx;
     
     
 
@@ -47,7 +53,7 @@ public class FuelTank : Subsystem {
     {
         for (;;)
         {
-            UpdateFuel();
+            UpdateUI();
             if (fuelLevel < 0)
             {
                 fuelLevel = 0;
@@ -73,14 +79,18 @@ public class FuelTank : Subsystem {
     }
 
 
-    private void UpdateFuel()
+    private void UpdateUI()
     {
         fuelFlow = gm.GetFuelUse();
         fuelLevel -= gm.TimeScale * (fuelFlow + fuelLoss) * (Time.time - timeOfLastFuelUpdate);
         timeOfLastFuelUpdate = Time.time;
 
         fuelLevel = Mathf.Min(fuelLevel, maxFuelCapacity);
-        fuelTx.text = String.Format("Fuel {0:###}/{1:###}", fuelLevel, maxFuelCapacity);
+        fuelTx.text = String.Format("{0:###}/{1:###}", fuelLevel, maxFuelCapacity);
+        fuelRateTx.text = String.Format("{0:#0.00} fuel/sec", TotalFuelFlowRate);
+        fuelLevelSlider.fillAmount = fuelLevel / maxFuelCapacity;
+
+        powerUseTx.text = String.Format("{0}/{1}", currentPower, maxPower);
     }
 
     protected override void RepairSystem()
@@ -123,7 +133,7 @@ public class FuelTank : Subsystem {
     public void AddFuel(float amount)
     {
         fuelLevel += amount;
-        UpdateFuel();
+        UpdateUI();
     }
 }
 

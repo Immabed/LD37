@@ -16,7 +16,7 @@ public class ShipCommand : Subsystem {
     float routeLength;
     float timeOfLastUpdate;
 
-    public float DistanceToDestination {  get { return distanceToDestination; } set { routeLength = value; } }
+    public float DistanceToDestination {  get { return distanceToDestination; } set { routeLength = value; distanceToDestination = routeLength; } }
 
     private void Awake()
     {
@@ -25,10 +25,17 @@ public class ShipCommand : Subsystem {
 
     void UpdateUI()
     {
-        int timeLeft = (int)(distanceToDestination / gm.CurrentSpeed);
-        string minutes = Mathf.Floor(timeLeft / 60).ToString("00");
-        string seconds = (timeLeft % 60).ToString("00");
-        timeTx.text = String.Format("{0} min {1} sec", minutes, seconds);
+        if (gm.CurrentSpeed != 0)
+        {
+            int timeLeft = (int)(distanceToDestination / gm.CurrentSpeed);
+            string minutes = Mathf.Floor(timeLeft / 60).ToString("00");
+            string seconds = (timeLeft % 60).ToString("00");
+            timeTx.text = String.Format("{0} min {1} sec", minutes, seconds);
+        }
+        else
+        {
+            timeTx.text = String.Format("Stopped");
+        }
 
         progressBar.fillAmount = (routeLength - distanceToDestination) / routeLength;
     }
@@ -38,8 +45,9 @@ public class ShipCommand : Subsystem {
         timeOfLastUpdate = Time.time;
         for (;;)
         {
+            //Debug.Log(distanceToDestination);
+
             distanceToDestination -= (gm.CurrentSpeed * (Time.time - timeOfLastUpdate) * gm.TimeScale);
-            Debug.Log(distanceToDestination);
             UpdateUI();
             if (distanceToDestination <= 0)
             {

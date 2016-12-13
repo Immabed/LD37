@@ -18,6 +18,22 @@ public class LifeSupport : Subsystem {
 
     [SerializeField]
     Slider airLevelIndicator;
+    [SerializeField]
+    GameObject sliderHandle;
+    [SerializeField]
+    Text timeTillDeathTx;
+    [SerializeField]
+    Text percentAirTx;
+    [SerializeField]
+    Text warningLevelTx;
+    [SerializeField]
+    Text statusTx;
+    [SerializeField]
+    Color warningColor;
+    [SerializeField]
+    Color dangerColor;
+    [SerializeField]
+    Color goodColor;
 
     [SerializeField]
     [Range(0,1)]
@@ -28,7 +44,9 @@ public class LifeSupport : Subsystem {
     [Tooltip("Max fraction of air considered dangerous")]
     float dangerousAirFraction;
 
+    bool isDecreasing;
 
+    [SerializeField]
     float airLevel = 1;
 
     float timeOfLastUpdate;
@@ -41,6 +59,8 @@ public class LifeSupport : Subsystem {
             if (currentPower != maxPower && airLevel > 0)
             {
                 airLevel -= fractionAirLossPerSec * (Time.time - timeOfLastUpdate) * gm.TimeScale * (maxPower - currentPower) / maxPower;
+                isDecreasing = true;
+               
                 if (airLevel <= 0)
                 {
                     airLevel = 0;
@@ -49,12 +69,14 @@ public class LifeSupport : Subsystem {
             }
             else if (currentPower == maxPower && airLevel < 1)
             {
+                isDecreasing = false;
                 airLevel += fractionAirGainPerSec * (Time.time - timeOfLastUpdate) * gm.TimeScale;
             }
             if (airLevel > 1)
             {
                 airLevel = 1;
             }
+            timeOfLastUpdate = Time.time;
             UpdateUI();
             yield return new WaitForSeconds(timeBetweenUpdates);
         }
@@ -71,6 +93,46 @@ public class LifeSupport : Subsystem {
     private void UpdateUI()
     {
         airLevelIndicator.value = airLevel;
+        if (isDecreasing)
+        {
+            sliderHandle.transform.rotation = Quaternion.Euler(0, 0, 0);
+            float timeTillDeath = airLevel / (fractionAirLossPerSec * (maxPower - currentPower) / maxPower);
+            string minutes = Mathf.Floor(timeTillDeath / 60).ToString("00");
+            string seconds = (timeTillDeath % 60).ToString("00");
+            timeTillDeathTx.text = String.Format("TIME UNTIL DEATH {0}:{1}", minutes, seconds);
+            statusTx.text = "AND FALLING";
+        }
+        else
+        {
+            sliderHandle.transform.rotation = Quaternion.Euler(0, 180, 0);
+            if (airLevel < 1)
+            {
+                statusTx.text = "AND RISING";
+            }
+            else
+            {
+                statusTx.text = "AND HOLDING";
+            }
+            timeTillDeathTx.text = "";
+        }
+
+        if (airLevel < criticalAirFraction)
+        {
+            warningLevelTx.text = "DANGER";
+            warningLevelTx.color = dangerColor;
+        }
+        else if (airLevel < dangerousAirFraction)
+        {
+            warningLevelTx.text = "WARNING";
+            warningLevelTx.color = warningColor;
+        }
+        else
+        {
+            warningLevelTx.color = goodColor;
+            warningLevelTx.text = "GOOD";
+            
+        }
+        percentAirTx.text = String.Format("{0:00}%", 100 * airLevel);
     }
 
     public override void DamageSystem()

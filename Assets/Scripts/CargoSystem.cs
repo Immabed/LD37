@@ -122,17 +122,17 @@ public class CargoSystem : Subsystem {
     protected override void UpdatePower ()
     {
         base.UpdatePower ();
- 
+
+        int powerAvailable = Mathf.Min(currentPowerLimit - currentPower, gm.EnergyAvailable());
         // Distribute power
-        if (currentPower < currentPowerLimit) {
-			int powerLeft = currentPowerLimit - currentPower;
+        if (powerAvailable > 0) {
             for (int i = 0; i < cargoUsed; i++) {
                 if (powerDistribution[i] < cargo[i].PowerNeed)
                 {
-                    int distributable = Mathf.Min(cargo[i].PowerNeed - powerDistribution[i], powerLeft);
-                    powerLeft -= distributable;
+                    int distributable = Mathf.Min(cargo[i].PowerNeed - powerDistribution[i], powerAvailable);
+                    powerAvailable -= distributable;
                     powerDistribution[i] += distributable;
-                    if (powerLeft == 0)
+                    if (powerAvailable == 0)
                         break;
                 }   
 				i += cargo [i].Size - 1;

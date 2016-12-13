@@ -1,13 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Subsystem : MonoBehaviour {
 
     public GameObject menu;
     public GameObject repairMenu;
 
-	[SerializeField]
+
+    [SerializeField]
+    Button[] powerBars;
+    Image[] powerBarImages;
+
+    [SerializeField]
 	[Tooltip("Only applicable if a level 2 or better subsystem")]
 	protected Vector2 costRange;
     protected int cost;
@@ -71,18 +77,67 @@ public abstract class Subsystem : MonoBehaviour {
 
     protected virtual void Start()
     {
+        powerBarImages = new Image[powerBars.Length];
+        for (int i = 0; i < powerBars.Length; i++)
+        {
+            powerBarImages[i] = powerBars[i].gameObject.GetComponent<Image>();
+        }
+
+
         if (timeBetweenUpdates > 0)
             co = StartCoroutine(UpdateTimer());
         currentPower = maxPower;
         currentPowerLimit = maxPower;
         cost = Mathf.RoundToInt(Random.Range(costRange.x, costRange.y));
+        if (powerBars.Length != maxPower)
+        {
+            Debug.LogWarning(System.String.Format("Engine {0} does not have equal number of power bars({1}) and max power({2}). ", gameObject.name, powerBars.Length, maxPower));
+        }
+
+        
     }
+
 
     public void GenerateCost()
     {
         cost = Mathf.RoundToInt(Random.Range(costRange.x, costRange.y));
     }
 
+    protected void UpdatePowerBars()
+    {
+        for (int i = 0; i < maxPower; i++)
+        {
+            if (i < currentPower)
+            {
+                powerBarImages[i].sprite = gm.UsedPowerSprite;
+                powerBars[i].interactable = true;
+            }
+            else if (i < currentPowerLimit)
+            {
+                powerBarImages[i].sprite = gm.UnusedPowerSprite;
+                powerBars[i].interactable = true;
+            }
+            else
+            {
+                powerBarImages[i].sprite = gm.LockedPowerSprite;
+                powerBars[i].interactable = false;
+            }
+        }
+    }
+
+    public void ClickPower(int id)
+    {
+        if (id < currentPowerLimit && id != currentPower)
+        {
+            currentPower = id;
+            UpdatePowerBars();
+        }
+        else if (id == currentPower)
+        {
+            currentPower--;
+            UpdatePowerBars();
+        }
+    }
 
     protected virtual void UpdatePower()
     {

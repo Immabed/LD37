@@ -27,6 +27,9 @@ public class Engine : Subsystem {
     Text speedTx;
     [SerializeField]
     Text fuelEffTx;
+    [SerializeField]
+    Text powerUseTx;
+    
 
     int damageLevel = -1;
 
@@ -38,12 +41,19 @@ public class Engine : Subsystem {
     {
         for (;;)
         {
-            Debug.Log("Speed " + CurrentSpeed.ToString());
-            speedTx.text = String.Format("Speed {0:#0.#} light years per second", CurrentSpeed);
-            fuelEffTx.text = String.Format("Fuel Efficiency {0:#0.##} fuel per light year", (CurrentFuelDraw / CurrentSpeed));
+            UpdateUI();
             yield return new WaitForSeconds(timeBetweenUpdates);
         }
     }
+
+    private void UpdateUI() {
+        speedTx.text = String.Format("Speed {0:#0.#} light years per second", CurrentSpeed);
+        fuelEffTx.text = String.Format("Fuel Efficiency {0:#0.##} fuel per light year", (CurrentFuelDraw / CurrentSpeed));
+        powerUseTx.text = String.Format("{0}/{1}", currentPower, maxPower);
+        UpdatePowerBars();
+    }
+
+    
 
 
     private void Awake()
@@ -53,6 +63,7 @@ public class Engine : Subsystem {
         {
             Debug.LogWarning(String.Format("Engine {0} does not have equal number of repair recipes({1}) and damages({2}). ", gameObject.name, recipes.Length, damageList.Length));
         }
+        
     }
 
     protected override void RepairSystem()

@@ -59,9 +59,9 @@ public class ShipStorage : Subsystem {
 
     private void UpdateUI()
     {
-        getSparePartsTx.text = "Spare Parts " + storedSpareParts.ToString();
-        getPowerCellTx.text = "Power Cell " + storedPowerCells.ToString();
-        getComputerTx.text = "Computer " + storedComputers.ToString();
+        getSparePartsTx.text = storedSpareParts.ToString();
+        getPowerCellTx.text = storedPowerCells.ToString();
+        getComputerTx.text = storedComputers.ToString();
         
         getSparePartsBt.interactable = storedSpareParts > 0;
         getComputerBt.interactable = storedComputers > 0;
