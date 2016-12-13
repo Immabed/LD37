@@ -47,8 +47,8 @@ public class Engine : Subsystem {
     }
 
     private void UpdateUI() {
-        speedTx.text = String.Format("Speed {0:#0.#} light years per second", CurrentSpeed);
-        fuelEffTx.text = String.Format("Fuel Efficiency {0:#0.##} fuel per light year", (CurrentFuelDraw / CurrentSpeed));
+        //speedTx.text = String.Format("Speed {0:#0.#} light years per second", CurrentSpeed);
+        //fuelEffTx.text = String.Format("Fuel Efficiency {0:#0.##} fuel per light year", (CurrentFuelDraw / CurrentSpeed));
         powerUseTx.text = String.Format("{0}/{1}", currentPower, maxPower);
         UpdatePowerBars();
     }

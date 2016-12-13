@@ -41,7 +41,7 @@ public class Vendor : MonoBehaviour {
 		vendorImage.sprite = vendor.vendor;
 
 		fuelSale = gm.GenerateFuelSale();
-		fuelButton.GetComponentInChildren<Text>().text = string.Format("{0} fuel for {1} credits", fuelSale.amount, fuelSale.cost);
+		//fuelButton.GetComponentInChildren<Text>().text = string.Format("{0} fuel for {1} credits", fuelSale.amount, fuelSale.cost);
 
 		if (Random.value < 0.8) {
 			firstType = SaleType.RESOURCE;

@@ -16,7 +16,15 @@ public class ShipCommand : Subsystem {
     float routeLength;
     float timeOfLastUpdate;
 
-    public float DistanceToDestination {  get { return distanceToDestination; } set { routeLength = value; distanceToDestination = routeLength; } }
+    public float DistanceToDestination {  get { return distanceToDestination; } }
+
+
+    public void SetNewDestination(float distance)
+    {
+        routeLength = distance;
+        distanceToDestination = distance;
+        StartCoroutine(UpdateTimer());
+    }
 
     private void Awake()
     {

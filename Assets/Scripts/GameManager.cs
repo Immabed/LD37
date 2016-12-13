@@ -126,8 +126,7 @@ public class GameManager : MonoBehaviour {
     {
         timeScale = 1;
         vendorMenu.SetActive(false);
-        cockpit.DistanceToDestination = distanceToNextStation;
-        //cockpit.Re
+        cockpit.SetNewDestination(distanceToNextStation);
     }
 
     public void UpdateStationUI()
@@ -153,7 +152,7 @@ public class GameManager : MonoBehaviour {
             stationNameTx.text = stationNames[(int)UnityEngine.Random.Range(0, stationNames.Length)];
 
             // Add to cargo deliverd
-            credits += cargo.CollectCargo(); // Implement something interesting
+            //credits += cargo.CollectCargo(); // Implement something interesting
                                              // DO SOMETHING
                                              // SET NEXT DESTINATION DISTANCE
             distanceToNextStation = (int)(baseContractDistance * (Difficulty() / contractDistanceDoubledAtDifficulty + 1));
@@ -257,7 +256,7 @@ public class GameManager : MonoBehaviour {
     public ResourceForSale GenerateResourceSale() {
         float totalWeight = 0;
         float[] weights = new float[resourcePrices.Length];
-        for (int i = 0; i < resourcePrices.Length;) {
+        for (int i = 0; i < resourcePrices.Length; i++) {
             weights[i] = resourcePrices[i].relativeWeight;
             totalWeight += resourcePrices[i].relativeWeight;
         }
@@ -321,7 +320,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public Subsystem GenerateUpgrade() {
-        Subsystem[] systems = new Subsystem[5]; // 5 is number of upgradable resources
+        /* Subsystem[] systems = new Subsystem[5]; // 5 is number of upgradable resources
         int numberOfUpgradesAvailable = 0;
         if (PowerGeneratorLevel < upgrades.powerGenerators.Length - 1) {
             systems[numberOfUpgradesAvailable] = upgrades.powerGenerators[PowerGeneratorLevel + 1];
@@ -348,8 +347,8 @@ public class GameManager : MonoBehaviour {
             numberOfUpgradesAvailable++;
         }
         var sys = systems[(int)UnityEngine.Random.Range(0, numberOfUpgradesAvailable)];
-        sys.GenerateCost();
-        return sys;
+        sys.GenerateCost(); */
+        return upgrades.engines[0];
     }
 
     public VendorAndName GenerateVendor() {
