@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour {
     public void UpdateStationUI()
     {
         stationCreditTx.text = credits.ToString();
-        stationNextDestinationTx.text = String.Format("Next station in {0} light years", distanceToNextStation);
+        stationNextDestinationTx.text = String.Format("{0} light years", distanceToNextStation);
         engineUpgradeLevelTx.text = String.Format("{0} - {1} power.", engine.Name, engine.MaxPower);
         fuelUpgradeLevelTx.text = String.Format("{0} - {1}/{2} fuel", fuel.Name, fuel.FuelLevel, fuel.FuelCapacity);
         cargoLevelTx.text = String.Format("{0} - {1}/{2} cargo capacity", cargo.Name, cargo.CargoCapacity - cargo.CargoRoomAvailable, cargo.CargoCapacity);

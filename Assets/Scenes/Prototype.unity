@@ -8605,13 +8605,13 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 374173245}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 470424340}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 217, y: -12}
@@ -15434,13 +15434,13 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 639570508}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 42451888}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 217, y: -12}
@@ -17334,13 +17334,13 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 718970956}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1901507175}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 217, y: -12}
@@ -31571,7 +31571,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 1183294337
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1249328162
 RectTransform:
@@ -33739,11 +33739,16 @@ MonoBehaviour:
     - Brood Snchurs
     - Brudy Singljazzens
     - Bridl Shaves
+    - Brod Sniers
+    - Boodlie Snackurr
+    - Brooby Doobles
   - sprite: {fileID: 21300002, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
     names:
     - Noobin Dells
     - Nibblin Wholejams
     - Nabbin Wheels
+    - Shooben Duels
+    - Noodle Sool
   - sprite: {fileID: 21300004, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
     names:
     - Nibnog Zimziezee
@@ -33754,6 +33759,7 @@ MonoBehaviour:
     - Joblethinz Vang
     - Janglethun Oo
     - Jubthn Vonton
+    - Joorbathorn Roo
   - sprite: {fileID: 21300008, guid: 29f9a02cb386e7f40b6fe371b8702a41, type: 3}
     names:
     - Shamrun Shaybrams
@@ -33826,7 +33832,11 @@ MonoBehaviour:
   - PPX Consortium Headquarters
   - "Am\xE9ile Colony"
   - Taciturn Ltd. Station
-  baseContractDistance: 5
+  - La Roacha
+  - Concord Dawn
+  - ch'Rihan
+  - Riemann Zeta
+  baseContractDistance: 50
   contractDistanceDoubledAtDifficulty: 30
   lockedPower: {fileID: 21300008, guid: 14edd5dceec35494994b3f987148f5d8, type: 3}
   unusedPower: {fileID: 21300002, guid: 14edd5dceec35494994b3f987148f5d8, type: 3}
@@ -44461,7 +44471,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 1183294337
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!224 &1779209047
 RectTransform:
