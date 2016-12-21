@@ -30569,8 +30569,8 @@ MonoBehaviour:
     isTimeSensitive: 0
     timeRange: {x: 0, y: 0}
     minimumDifficulty: 0
-    powerNeedRange: {x: 0, y: 0}
-    maxCreditRange: {x: 0, y: 0}
+    powerNeedRange: {x: 2, y: 3}
+    maxCreditRange: {x: 8, y: 11}
     lateCreditFractionRange: {x: 0, y: 0}
     damagedCreditFractionRange: {x: 0, y: 0}
     ruinedCreditFractionRange: {x: 0, y: 0}
@@ -30586,7 +30586,7 @@ MonoBehaviour:
     - Non-Flammable Gasoline
     isTimeSensitive: 0
     timeRange: {x: 0, y: 0}
-    minimumDifficulty: 0
+    minimumDifficulty: 2
     powerNeedRange: {x: 0, y: 0}
     maxCreditRange: {x: 0, y: 0}
     lateCreditFractionRange: {x: 0, y: 0}
@@ -30603,7 +30603,7 @@ MonoBehaviour:
     - '"I Voted" Stickers'
     isTimeSensitive: 1
     timeRange: {x: 0, y: 0}
-    minimumDifficulty: 0
+    minimumDifficulty: 2
     powerNeedRange: {x: 0, y: 0}
     maxCreditRange: {x: 0, y: 0}
     lateCreditFractionRange: {x: 0, y: 0}
@@ -30622,7 +30622,7 @@ MonoBehaviour:
     - Spoiled Edible Biology Textbooks
     isTimeSensitive: 1
     timeRange: {x: 0, y: 0}
-    minimumDifficulty: 0
+    minimumDifficulty: 2
     powerNeedRange: {x: 0, y: 0}
     maxCreditRange: {x: 0, y: 0}
     lateCreditFractionRange: {x: 0, y: 0}
@@ -30639,7 +30639,7 @@ MonoBehaviour:
     - Irradiated Children (nearly alive)
     isTimeSensitive: 1
     timeRange: {x: 0, y: 0}
-    minimumDifficulty: 0
+    minimumDifficulty: 2
     powerNeedRange: {x: 0, y: 0}
     maxCreditRange: {x: 0, y: 0}
     lateCreditFractionRange: {x: 0, y: 0}
@@ -30654,7 +30654,7 @@ MonoBehaviour:
     - Irradiated Children (alive)
     isTimeSensitive: 1
     timeRange: {x: 0, y: 0}
-    minimumDifficulty: 0
+    minimumDifficulty: 2
     powerNeedRange: {x: 0, y: 0}
     maxCreditRange: {x: 0, y: 0}
     lateCreditFractionRange: {x: 0, y: 0}
