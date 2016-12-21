@@ -50,6 +50,9 @@ public abstract class Subsystem : MonoBehaviour {
     [Range(0, 1)]
     protected float timeBetweenUpdates;
 
+	protected SubsystemType type;
+
+
     // Repair Recipes
     [SerializeField]
     protected RepairRecipe[] recipes;
@@ -63,6 +66,7 @@ public abstract class Subsystem : MonoBehaviour {
 	public string Name { get { return nameOfSystem; }}
 	public string Description { get { return upgradeDescription; }}
     public virtual float FailureChance { get { return 1 / averageTimeUntilFailure; } }
+	public SubsystemType Type { get { return type; } }
 
     protected Coroutine co;
 
@@ -109,17 +113,17 @@ public abstract class Subsystem : MonoBehaviour {
         {
             if (i < currentPower)
             {
-                powerBarImages[i].sprite = gm.UsedPowerSprite;
+				powerBarImages[i].sprite = gm.PowerIcons.Used;
                 powerBars[i].interactable = true;
             }
             else if (i < currentPowerLimit)
             {
-                powerBarImages[i].sprite = gm.UnusedPowerSprite;
+				powerBarImages[i].sprite = gm.PowerIcons.Unused;
                 powerBars[i].interactable = true;
             }
             else
             {
-                powerBarImages[i].sprite = gm.LockedPowerSprite;
+				powerBarImages[i].sprite = gm.PowerIcons.Locked;
                 powerBars[i].interactable = false;
             }
         }
@@ -313,3 +317,5 @@ public struct RepairRecipe
         return sparePartsNeeded <= 0 && computersNeeded <= 0 && powerCellsNeeded <= 0;
     }
 }
+
+public enum SubsystemType {NONETYPE, ENGINE, FUEL, POWER, CARGO, LIFESUPPORT, STORAGE, COCKPIT, DATABANK}

@@ -41,6 +41,9 @@ public class ShipStorage : Subsystem {
 
     private void Awake()
     {
+
+		type = SubsystemType.STORAGE;
+
         getSparePartsTx = getSparePartsBt.GetComponentInChildren<Text>();
         getComputerTx = getComputerBt.GetComponentInChildren<Text>();
         getPowerCellTx = getPowerCellBt.GetComponentInChildren<Text>();

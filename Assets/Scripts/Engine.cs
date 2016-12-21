@@ -58,6 +58,7 @@ public class Engine : Subsystem {
 
     private void Awake()
     {
+		type = SubsystemType.ENGINE;
 
         if (damageList.Length != recipes.Length)
         {

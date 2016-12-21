@@ -75,6 +75,8 @@ public class CargoSystem : Subsystem {
 
     private void Awake()
     {
+		type = SubsystemType.CARGO;
+
         // Check for recipes.
         if (damageList.Length != recipes.Length)
         {

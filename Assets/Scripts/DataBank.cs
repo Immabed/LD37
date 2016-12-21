@@ -17,6 +17,9 @@ public class DataBank : Subsystem {
     float timeTrucking;
 
 
+	void Awake() {
+		type = SubsystemType.DATABANK;
+	}
 
     private void UpdateUI()
     {

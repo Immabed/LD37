@@ -72,12 +72,12 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     [Tooltip("Distances are doubled by this difficulty level")]
     int contractDistanceDoubledAtDifficulty;
-    [SerializeField]
-    Sprite lockedPower;
-    [SerializeField]
-    Sprite unusedPower;
-    [SerializeField]
-    Sprite usedPower;
+	[SerializeField]
+	PowerLevelIcons powerIcons;
+	[SerializeField]
+	SaleIcons saleIcons;
+	[SerializeField]
+	CargoIcons cargoIcons;
 
 
     int distanceToNextStation;
@@ -102,9 +102,10 @@ public class GameManager : MonoBehaviour {
     public int StorageAvailable { get { return storage.RoomLeft; } }
     public int CargoRoomAvailable { get { return cargo.CargoRoomAvailable; } }
     public float FuelTankRoom { get { return fuel.RoomInTank; } }
-    public Sprite LockedPowerSprite { get { return lockedPower; } }
-    public Sprite UnusedPowerSprite { get { return unusedPower; } }
-    public Sprite UsedPowerSprite { get { return usedPower; } }
+
+	public PowerLevelIcons PowerIcons { get { return powerIcons; } }
+	public SaleIcons SaleIcons { get { return saleIcons; } }
+	public CargoIcons CargoIcons { get { return cargoIcons; } }
 
 
 
@@ -300,23 +301,36 @@ public class GameManager : MonoBehaviour {
             size = 2;
         else if (CargoLevel == 4 && UnityEngine.Random.value < chanceFor2if4)
             size = 2;
+		Sprite sp = null;
+		switch (pool.type) {
+			case CargoType.STANDARD:
+				sp = cargoIcons.Standard;
+				break;
+			case CargoType.HAZARDOUS:
+				sp = cargoIcons.Hazardous;
+				break;
+			case CargoType.PERISHABLE:
+				sp = cargoIcons.Perishable;
+				break;
+		}
 
-        Cargo newCargo = new Cargo(
-            Mathf.RoundToInt(UnityEngine.Random.Range(pool.powerNeedRange.x, pool.powerNeedRange.y) * size),
-            size,
-            pool.isTimeSensitive,
-            Mathf.RoundToInt(UnityEngine.Random.Range(pool.timeRange.x, pool.timeRange.y) * size),
-            pool.names[(int)UnityEngine.Random.Range(0, pool.names.Length)],
-            Mathf.RoundToInt(UnityEngine.Random.Range(pool.maxCreditRange.x, pool.maxCreditRange.y) * size),
-            Mathf.RoundToInt(UnityEngine.Random.Range(pool.lateCreditFractionRange.x, pool.lateCreditFractionRange.y) * size),
-            Mathf.RoundToInt(UnityEngine.Random.Range(pool.damagedCreditFractionRange.x, pool.damagedCreditFractionRange.y) * size),
-            Mathf.RoundToInt(UnityEngine.Random.Range(pool.ruinedCreditFractionRange.x, pool.ruinedCreditFractionRange.y) * size),
-            Mathf.RoundToInt(UnityEngine.Random.Range(pool.damagedAtFractionRange.x, pool.damagedAtFractionRange.y) * size),
-            Mathf.RoundToInt(UnityEngine.Random.Range(pool.ruinedAtFractionRange.x, pool.ruinedAtFractionRange.y) * size),
-            Mathf.RoundToInt(UnityEngine.Random.Range(pool.maxFractionalDegredationRateRange.x, pool.maxFractionalDegredationRateRange.y) * size)
+		Cargo newCargo = new Cargo(
+			pool.type,
+			Mathf.RoundToInt(UnityEngine.Random.Range(pool.powerNeedRange.x, pool.powerNeedRange.y) * size),
+			size,
+			pool.isTimeSensitive,
+			Mathf.RoundToInt(UnityEngine.Random.Range(pool.timeRange.x, pool.timeRange.y) * size),
+			pool.names[(int)UnityEngine.Random.Range(0, pool.names.Length)],
+			Mathf.RoundToInt(UnityEngine.Random.Range(pool.maxCreditRange.x, pool.maxCreditRange.y) * size),
+			Mathf.RoundToInt(UnityEngine.Random.Range(pool.lateCreditFractionRange.x, pool.lateCreditFractionRange.y) * size),
+			Mathf.RoundToInt(UnityEngine.Random.Range(pool.damagedCreditFractionRange.x, pool.damagedCreditFractionRange.y) * size),
+			Mathf.RoundToInt(UnityEngine.Random.Range(pool.ruinedCreditFractionRange.x, pool.ruinedCreditFractionRange.y) * size),
+			Mathf.RoundToInt(UnityEngine.Random.Range(pool.damagedAtFractionRange.x, pool.damagedAtFractionRange.y) * size),
+			Mathf.RoundToInt(UnityEngine.Random.Range(pool.ruinedAtFractionRange.x, pool.ruinedAtFractionRange.y) * size),
+			Mathf.RoundToInt(UnityEngine.Random.Range(pool.maxFractionalDegredationRateRange.x, pool.maxFractionalDegredationRateRange.y) * size),
+			sp
         );
         return newCargo;
-
     }
 
     public Subsystem GenerateUpgrade() {
@@ -621,4 +635,72 @@ public struct FuelSale {
 	public int amount;
 	public int cost;
 
+}
+
+[System.Serializable]
+public struct SaleIcons {
+	[SerializeField]
+	Sprite fuel;
+	[SerializeField]
+	Sprite cargo;
+	[SerializeField]
+	Sprite spareParts;
+	[SerializeField]
+	Sprite computer;
+	[SerializeField]
+	Sprite powerCell;
+	[SerializeField]
+	Sprite upgradeEngine;
+	[SerializeField]
+	Sprite upgradeCargo;
+	[SerializeField]
+	Sprite upgradeFuel;
+	[SerializeField]
+	Sprite upgradeStorage;
+	[SerializeField]
+	Sprite upgradePower;
+
+	public Sprite Fuel { get { return fuel; } }
+	public Sprite UpgradeEngine { get { return upgradeEngine; } }
+	public Sprite UpgradeCargo { get { return upgradeCargo; } }
+	public Sprite UpgradeFuel { get { return upgradeFuel; } }
+	public Sprite UpgradeStorage { get { return upgradeStorage; } }
+	public Sprite UpgradePower { get { return upgradePower; } }
+	public Sprite Cargo { get { return cargo; } }
+	public Sprite SpareParts { get { return spareParts; } }
+	public Sprite Computer { get { return computer; } }
+	public Sprite PowerCell { get { return powerCell; } }
+}
+
+[System.Serializable]
+public struct PowerLevelIcons
+{
+	[SerializeField]
+	Sprite used;
+	[SerializeField]
+	Sprite unused;
+	[SerializeField]
+	Sprite locked;
+	[SerializeField]
+	Sprite unavailable;
+
+	public Sprite Used { get { return used; } }
+	public Sprite Unused { get { return unused; } }
+	public Sprite Locked { get { return locked; } }
+	public Sprite Unavailabled { get { return unavailable; } }
+}
+
+[System.Serializable]
+public struct CargoIcons
+{
+	[SerializeField]
+	Sprite standard;
+	[SerializeField]
+	Sprite perishable;
+	[SerializeField]
+	Sprite hazardous;
+
+	public Sprite Standard { get { return standard; } }
+	public Sprite Perishable { get { return perishable; } }
+	public Sprite Hazardous { get { return hazardous; } }
 }

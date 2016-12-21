@@ -4,11 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class Cargo {
-
-    [SerializeField]
-    Sprite sprite;
-
-
+		
 	[SerializeField]
 	int powerNeed;
     int currentPower;
@@ -40,14 +36,17 @@ public class Cargo {
     [SerializeField]
     float maxDegredationRate;
     float currentStatus;
+	CargoType type;
+	Sprite sprite;
 
     float timeOfLastUpdate;
 
     
 
-	public Cargo (int powerNeed, int size, bool isTimeSensitive, float timeLimit, string nameOfCargo, 
+	public Cargo (CargoType type, int powerNeed, int size, bool isTimeSensitive, float timeLimit, string nameOfCargo, 
 	              int maxCredits, float lateCreditsPercent, float damagedCreditsPercent, float ruinedCreditsPercent, 
-	              float damagedAtPercent, float ruinedAtPercent, float maxDegredationRate) {
+	              float damagedAtPercent, float ruinedAtPercent, float maxDegredationRate, Sprite sprite) {
+		this.type = type;
 		this.powerNeed = powerNeed;
 		this.size = size;
 		this.isTimeSensitive = isTimeSensitive;
@@ -60,6 +59,7 @@ public class Cargo {
 		this.damagedAtPercent = damagedAtPercent;
 		this.ruinedAtPercent = ruinedAtPercent;
 		this.maxDegredationRate = maxDegredationRate;
+		this.sprite = sprite;
 	}
 
 
@@ -82,13 +82,14 @@ public class Cargo {
         }
     }
 
+	public CargoType Type { get { return type; } }
 	public int PowerNeed { get { return powerNeed; } }
 	public int Size { get { return size; } }
     public bool IsTimeSensitive {  get { return isTimeSensitive; } }
     public float TimeRemaining { get { return timeLimit; } }
     public int CurrentPower { get { return currentPower; } set { currentPower = value; } }
     public string Name {  get { return nameOfCargo; } }
-    public int MaxCreditValue {  get { return maxCredits; } }
+	public int MaxCreditValue { get { return maxCredits; } }
     public int CurrentCreditValue {
         get
         {
@@ -106,7 +107,7 @@ public class Cargo {
             return Mathf.RoundToInt(creditValue);
         }
     }
-    public Sprite Sprite { get { return sprite; } }
+	public Sprite Sprite { get { return sprite; } }
 }
 
 

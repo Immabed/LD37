@@ -66,6 +66,8 @@ public class FuelTank : Subsystem {
 
     private void Awake()
     {
+		type = SubsystemType.FUEL;
+
         fuelLevel = maxFuelCapacity;
         if (damageList.Length != recipes.Length)
         {

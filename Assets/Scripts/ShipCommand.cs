@@ -28,6 +28,8 @@ public class ShipCommand : Subsystem {
 
     private void Awake()
     {
+		type = SubsystemType.COCKPIT;
+
         distanceToDestination = routeLength;
     }
 

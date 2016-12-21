@@ -85,6 +85,8 @@ public class LifeSupport : Subsystem {
 
     private void Awake()
     {
+		type = SubsystemType.LIFESUPPORT;
+
         if (recipes.Length != 1)
         {
             Debug.LogWarning("Life Support supports having one repair recipe, it currently has" + recipes.Length.ToString());
