@@ -281,18 +281,18 @@ public class GameManager : MonoBehaviour {
         int availablePools = 0;
         float difficulty = Difficulty();
         for (int i = 0; i < cargoPools.Length; i++) {
-            if (cargoPools[i].minimumDifficulty < difficulty)
+            if (cargoPools[i].minimumDifficulty <= difficulty)
                 availablePools++;
             else
                 break;
         }
         // MODIFIER
-        float weightDistibution = 1.21f;
+        float weightDistibution = 2f;
         float chanceFor2if2 = 0.1f;
         float chanceFor2if3 = 0.25f;
         float chanceFor2if4 = 0.5f;
         // END MODIFIER
-        int rand_num = (int)Mathf.Pow(UnityEngine.Random.Range(0, Mathf.Pow(availablePools, weightDistibution)), 1 / weightDistibution);
+		int rand_num = (int)Mathf.Pow(UnityEngine.Random.value * Mathf.Pow(availablePools, weightDistibution), 1 / weightDistibution);
         CargoPool pool = cargoPools[rand_num];
         int size = 1;
         if (CargoLevel == 2 && UnityEngine.Random.value < chanceFor2if2)
