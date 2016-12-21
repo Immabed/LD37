@@ -287,7 +287,7 @@ public class GameManager : MonoBehaviour {
                 break;
         }
         // MODIFIER
-        float weightDistibution = 2f;
+        float weightDistibution = 1.21f;
         float chanceFor2if2 = 0.1f;
         float chanceFor2if3 = 0.25f;
         float chanceFor2if4 = 0.5f;
