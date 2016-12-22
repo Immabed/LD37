@@ -21,7 +21,7 @@ public class DataBank : Subsystem {
 		type = SubsystemType.DATABANK;
 	}
 
-    private void UpdateUI()
+	protected override void UpdateUI()
     {
         int hours = Mathf.FloorToInt(timeTrucking / 3600);
         int minutes = Mathf.FloorToInt((timeTrucking % 3600) / 60);

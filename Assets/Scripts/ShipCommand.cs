@@ -33,7 +33,7 @@ public class ShipCommand : Subsystem {
         distanceToDestination = routeLength;
     }
 
-    void UpdateUI()
+	protected override void UpdateUI()
     {
         if (gm.CurrentSpeed != 0)
         {

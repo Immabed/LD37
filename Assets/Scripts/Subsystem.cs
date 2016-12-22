@@ -72,8 +72,11 @@ public abstract class Subsystem : MonoBehaviour {
 
     protected abstract IEnumerator UpdateTimer();
 
+	protected abstract void UpdateUI();
 
 	public void Deactivate() {
+		StopCoroutine(co);
+		co = null;
 		menu.SetActive(false);
 		repairMenu.SetActive(false);
 		gameObject.SetActive(false);
@@ -100,6 +103,12 @@ public abstract class Subsystem : MonoBehaviour {
 
         
     }
+
+	public void ActivateCoroutine() {
+		if (co == null && timeBetweenUpdates > 0) {
+			co = StartCoroutine(UpdateTimer());
+		}
+	}
 
 
     public void GenerateCost()
@@ -141,6 +150,7 @@ public abstract class Subsystem : MonoBehaviour {
             currentPower--;
             UpdatePowerBars();
         }
+		UpdateUI();
     }
 
     protected virtual void UpdatePower()
@@ -160,8 +170,8 @@ public abstract class Subsystem : MonoBehaviour {
         if (gm.EnergyAvailable() > 0)
         {
             currentPower += Mathf.Min(gm.EnergyAvailable(), currentPowerLimit - currentPower);
-        }
-        gm.UpdateSystems();
+        } 
+        //gm.UpdateSystems();
         //TODO - implement more power management
     }
 

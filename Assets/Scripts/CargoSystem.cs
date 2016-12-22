@@ -57,7 +57,7 @@ public class CargoSystem : Subsystem {
         }
     }
 
-    private void UpdateUI()
+	protected override void UpdateUI()
     {
         for (int i = 0; i < cargoCapacity; i++)
         {

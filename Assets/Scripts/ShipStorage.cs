@@ -60,7 +60,7 @@ public class ShipStorage : Subsystem {
 
 
 
-    private void UpdateUI()
+	protected override void UpdateUI()
     {
         getSparePartsTx.text = storedSpareParts.ToString();
         getPowerCellTx.text = storedPowerCells.ToString();

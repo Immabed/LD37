@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour {
     private void OnEnable()
     {
         UpdateSystems();
+		StartCoroutine(DamageTimer(0.1f));
     }
 
 
@@ -490,6 +491,7 @@ public class GameManager : MonoBehaviour {
             engine.Deactivate();
             engine = sys as Engine;
             engine.gameObject.SetActive(true);
+			engine.ActivateCoroutine();
         }
         else if (sys is CargoSystem)
         {
@@ -497,6 +499,7 @@ public class GameManager : MonoBehaviour {
             cargo.Deactivate();
             cargo = sys as CargoSystem;
             cargo.gameObject.SetActive(true);
+			cargo.ActivateCoroutine();
         }
         else if (sys is ShipStorage)
         {
@@ -505,6 +508,7 @@ public class GameManager : MonoBehaviour {
             sysStore.AddResource(ResourceType.COMPUTER, storage.StoredComputers);
             sysStore.AddResource(ResourceType.POWERCELL, storage.StoredPowerCells);
             storage = sysStore;
+			storage.ActivateCoroutine();
         }
         else if (sys is FuelTank)
         {
@@ -512,6 +516,7 @@ public class GameManager : MonoBehaviour {
             fuel.Deactivate();
             fuel = sys as FuelTank;
             fuel.gameObject.SetActive(true);
+			fuel.ActivateCoroutine();
         }
         else if (sys is PowerGenerator)
         {
@@ -519,6 +524,7 @@ public class GameManager : MonoBehaviour {
             power.Deactivate();
             power = sys as PowerGenerator;
             power.gameObject.SetActive(true);
+			power.ActivateCoroutine();
         }
 
     }
@@ -544,7 +550,7 @@ public class GameManager : MonoBehaviour {
                 {
                     cargo.CurrentPower = 0;
                     deficit = PowerUsed - power.CurrentPowerGeneration;
-                    lifeSupport.CurrentPower -= deficit = PowerUsed - power.CurrentPowerGeneration;
+                    lifeSupport.CurrentPower -= deficit;
                 }
                 else
                 {
@@ -561,13 +567,13 @@ public class GameManager : MonoBehaviour {
                 Debug.Log("Power deficit not dealt with properly.");
             }
         }
-        else if (PowerUsed < power.CurrentPowerGeneration)
+        /* else if (PowerUsed < power.CurrentPowerGeneration)
         {
             lifeSupport.CurrentPower += Mathf.Min(lifeSupport.CurrentPowerLimit - lifeSupport.CurrentPower, power.CurrentPowerGeneration - PowerUsed);
             cargo.CurrentPower += Mathf.Min(cargo.CurrentPowerLimit - cargo.CurrentPower, power.CurrentPowerGeneration - PowerUsed);
             fuel.CurrentPower += Mathf.Min(fuel.CurrentPowerLimit - fuel.CurrentPower, power.CurrentPowerGeneration - PowerUsed);
-            engine.CurrentPower += Mathf.Min(engine.CurrentPowerLimit - lifeSupport.CurrentPower, power.CurrentPowerGeneration - PowerUsed);
-        }
+			engine.CurrentPower += Mathf.Min(engine.CurrentPowerLimit - engine.CurrentPower, power.CurrentPowerGeneration - PowerUsed);
+        } */
     }
 
     public void EndGame(string endGameMessage)

@@ -92,7 +92,7 @@ public class LifeSupport : Subsystem {
             Debug.LogWarning("Life Support supports having one repair recipe, it currently has" + recipes.Length.ToString());
         }
     }
-    private void UpdateUI()
+	protected override void UpdateUI()
     {
         airLevelIndicator.value = airLevel;
         if (isDecreasing)
@@ -147,6 +147,7 @@ public class LifeSupport : Subsystem {
             RepairSystem();
         }
         UpdatePower();
+		Debug.Log("Life Support Damaged " + currentPower);
     }
 
     protected override void RepairSystem()

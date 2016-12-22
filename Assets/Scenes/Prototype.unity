@@ -15623,7 +15623,7 @@ MonoBehaviour:
   recipes: []
   timeTx: {fileID: 974475261}
   progressBar: {fileID: 961562331}
-  routeLength: 5
+  routeLength: 5000
 --- !u!61 &724764861
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18408,12 +18408,15 @@ MonoBehaviour:
   costRange: {x: 0, y: 0}
   maxPower: 2
   gm: {fileID: 1330485410}
-  averageTimeUntilFailure: 0
+  averageTimeUntilFailure: 2
   id: 
   nameOfSystem: 
   upgradeDescription: 
   timeBetweenUpdates: 0.1
-  recipes: []
+  recipes:
+  - sparePartsNeeded: 1
+    computersNeeded: 0
+    powerCellsNeeded: 0
   fractionAirLossPerSec: 0.033333335
   fractionAirGainPerSec: 0.022222223
   airLevelIndicator: {fileID: 1915768760}

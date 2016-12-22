@@ -46,7 +46,7 @@ public class PowerGenerator : Subsystem {
         UpdateUI();
     }
 
-    private void UpdateUI()
+	protected override void UpdateUI()
     {
         powerTx.text = String.Format("Power {0}/{1}", gm.PowerUsed, currentPowerGeneration);
     }
