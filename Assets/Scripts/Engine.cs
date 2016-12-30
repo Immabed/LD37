@@ -106,7 +106,7 @@ public class Engine : Subsystem {
                 gm.EndGame("Your engines failed in deep space without replacement parts. Maybe a space probe will encounter your frozen remains in future millennia.");
             }
         }
-        //Debug.Log("Damage Level" + damageLevel + ' ' + damageList.Length);
+        //Debug.Log("Engine: Damage Level " + damageLevel + ' ' + damageList.Length);
         UpdatePower();
     }
 }

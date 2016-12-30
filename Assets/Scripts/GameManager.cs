@@ -473,7 +473,7 @@ public class GameManager : MonoBehaviour {
         }
         if (!powerHasFailed && UnityEngine.Random.value < power.FailureChance * timeScale * timeStep)
         {
-            engineHasFailed = true;
+            powerHasFailed = true;
             power.DamageSystem();
         }
         if (!lifeSupportHasFailed && UnityEngine.Random.value < lifeSupport.FailureChance * timeScale * timeStep)
@@ -682,18 +682,21 @@ public struct SaleIcons {
 public struct PowerLevelIcons
 {
 	[SerializeField]
-	Sprite used;
+	Sprite inUse;
 	[SerializeField]
-	Sprite unused;
+	Sprite available;
 	[SerializeField]
-	Sprite locked;
+	Sprite availableDisabled;
 	[SerializeField]
 	Sprite unavailable;
+	[SerializeField]
+	Sprite unavailableDisabled;
 
-	public Sprite Used { get { return used; } }
-	public Sprite Unused { get { return unused; } }
-	public Sprite Locked { get { return locked; } }
-	public Sprite Unavailabled { get { return unavailable; } }
+	public Sprite InUse { get { return inUse; } }
+	public Sprite Available { get { return available; } }
+	public Sprite AvailableDisabled { get { return availableDisabled; } }
+	public Sprite Unavailable { get { return unavailable; } }
+	public Sprite UnavailableDisabled { get { return unavailableDisabled; } }
 }
 
 [System.Serializable]

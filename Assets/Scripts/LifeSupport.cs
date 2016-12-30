@@ -16,7 +16,9 @@ public class LifeSupport : Subsystem {
     [Tooltip("Fraction of air regained per second under normal operation")]
     float fractionAirGainPerSec;
 
-    [SerializeField]
+	[SerializeField]
+	Text powerUseTx;
+	[SerializeField]
     Slider airLevelIndicator;
     [SerializeField]
     GameObject sliderHandle;
@@ -135,6 +137,9 @@ public class LifeSupport : Subsystem {
             
         }
         percentAirTx.text = String.Format("{0:00}%", 100 * airLevel);
+		powerUseTx.text = String.Format("{0}/{1}", currentPower, maxPower);
+		UpdatePowerBars();
+
     }
 
     public override void DamageSystem()

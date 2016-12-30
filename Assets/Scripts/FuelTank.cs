@@ -93,6 +93,7 @@ public class FuelTank : Subsystem {
         fuelLevelSlider.fillAmount = fuelLevel / maxFuelCapacity;
 
         powerUseTx.text = String.Format("{0}/{1}", currentPower, maxPower);
+		UpdatePowerBars();
     }
 
     protected override void RepairSystem()

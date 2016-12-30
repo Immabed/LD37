@@ -20,7 +20,9 @@ public abstract class Subsystem : MonoBehaviour {
 
     [SerializeField]
     protected int maxPower;
+	[SerializeField]
     protected int currentPower;
+	[SerializeField]
     protected int currentPowerLimit;
 
     protected RepairRecipe currentRecipe;
@@ -60,7 +62,7 @@ public abstract class Subsystem : MonoBehaviour {
     public bool IsDamaged { get { return isDamaged; } }
 	public string ID { get { return id; } }
     public int CurrentPower { get { return currentPower; } set { currentPower = value; } }
-    public int CurrentPowerLimit {  get { return CurrentPowerLimit; } }
+    public int CurrentPowerLimit {  get { return currentPowerLimit; } }
     public int MaxPower {  get { return maxPower; } }
 	public int Cost { get { return cost; } }
 	public string Name { get { return nameOfSystem; }}
@@ -98,7 +100,7 @@ public abstract class Subsystem : MonoBehaviour {
         cost = Mathf.RoundToInt(Random.Range(costRange.x, costRange.y));
         if (powerBars.Length != maxPower)
         {
-            Debug.LogWarning(System.String.Format("Engine {0} does not have equal number of power bars({1}) and max power({2}). ", gameObject.name, powerBars.Length, maxPower));
+			Debug.LogWarning(string.Format("{0} does not have equal number of power bars({1}) and max power({2}). ", id, powerBars.Length, maxPower));
         }
 
         
@@ -122,25 +124,35 @@ public abstract class Subsystem : MonoBehaviour {
         {
             if (i < currentPower)
             {
-				powerBarImages[i].sprite = gm.PowerIcons.Used;
+				powerBarImages[i].sprite = gm.PowerIcons.InUse;
                 powerBars[i].interactable = true;
             }
-            else if (i < currentPowerLimit)
+			else if (i < currentPowerLimit && i - currentPower + 1 <= gm.EnergyAvailable())
             {
-				powerBarImages[i].sprite = gm.PowerIcons.Unused;
+				powerBarImages[i].sprite = gm.PowerIcons.Available;
                 powerBars[i].interactable = true;
             }
-            else
-            {
-				powerBarImages[i].sprite = gm.PowerIcons.Locked;
-                powerBars[i].interactable = false;
-            }
+			else if (i < currentPowerLimit && i - currentPower >= gm.EnergyAvailable())
+			{
+				powerBarImages[i].sprite = gm.PowerIcons.Unavailable;
+				powerBars[i].interactable = false;
+			}
+            else if (i >= currentPowerLimit && i - currentPower + 1 <= gm.EnergyAvailable())
+			{
+				powerBarImages[i].sprite = gm.PowerIcons.AvailableDisabled;
+				powerBars[i].interactable = false;
+			}
+			else if (i >= currentPowerLimit && i - currentPower >= gm.EnergyAvailable())
+			{
+				powerBarImages[i].sprite = gm.PowerIcons.UnavailableDisabled;
+				powerBars[i].interactable = false;
+			}
         }
     }
 
     public void ClickPower(int id)
     {
-        if (id < currentPowerLimit && id != currentPower)
+        if (id <= currentPowerLimit && id != currentPower)
         {
             currentPower = id;
             UpdatePowerBars();
