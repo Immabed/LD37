@@ -10,8 +10,8 @@ public abstract class Subsystem : MonoBehaviour {
 
 
     [SerializeField]
-    Button[] powerBars;
-    Image[] powerBarImages;
+    protected Button[] powerBars;
+    protected Image[] powerBarImages;
 
 	[SerializeField]
 	RepairRecipeTx menuRepairTx;
@@ -136,7 +136,7 @@ public abstract class Subsystem : MonoBehaviour {
         cost = Mathf.RoundToInt(Random.Range(costRange.x, costRange.y));
     }
 
-    protected void UpdatePowerBars()
+    protected virtual void UpdatePowerBars()
     {
         for (int i = 0; i < maxPower; i++)
         {
@@ -168,7 +168,7 @@ public abstract class Subsystem : MonoBehaviour {
         }
     }
 
-    public void ClickPower(int id)
+    public virtual void ClickPower(int id)
     {
         if (id <= currentPowerLimit && id != currentPower)
         {

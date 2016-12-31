@@ -107,10 +107,15 @@ public class GameManager : MonoBehaviour {
 	public SaleIcons SaleIcons { get { return saleIcons; } }
 	public CargoIcons CargoIcons { get { return cargoIcons; } }
 
+	public Engine Engine { get { return engine; } }
+	public FuelTank FuelTank { get { return fuel; } }
+	public LifeSupport LifeSupport { get { return lifeSupport; } }
+
 
 
     private void Awake() {
         Array.Sort<CargoPool>(cargoPools, (x, y) => x.minimumDifficulty.CompareTo(y.minimumDifficulty));
+
         
     }
 
@@ -118,6 +123,7 @@ public class GameManager : MonoBehaviour {
     {
         UpdateSystems();
 		StartCoroutine(DamageTimer(0.1f));
+		power.UpdateSystems();
     }
 
 
@@ -526,6 +532,7 @@ public class GameManager : MonoBehaviour {
             power.gameObject.SetActive(true);
 			power.ActivateCoroutine();
         }
+		power.UpdateSystems();
 
     }
 

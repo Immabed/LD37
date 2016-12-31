@@ -14,17 +14,59 @@ public class PowerGenerator : Subsystem {
 
     [SerializeField]
     int maxPowerGeneration;
-    int currentPowerGeneration;
+	int currentPowerGeneration;
 
     [SerializeField]
     Text powerTx;
+
+	[SerializeField]
+	PowerBarSelector enginePowerBars;
+	[SerializeField]
+	PowerBarSelector fuelPowerBars;
+	[SerializeField]
+	PowerBarSelector lifeSupportPowerBars;
+
 
     public int CurrentPowerGeneration { get { return currentPowerGeneration; } }
     public int MaxPowerGeneration { get { return maxPowerGeneration; } }
 
 
 
-    public void CopyPowerUsage(PowerGenerator gen)
+	protected override void UpdatePowerBars()
+	{
+		for (int i = 0; i < maxPowerGeneration; i++)
+		{
+			//Debug.Log("Power Used: " + gm.PowerUsed.ToString());
+			if (i < gm.PowerUsed)
+			{
+				powerBarImages[i].sprite = gm.PowerIcons.InUse;
+				powerBars[i].interactable = true;
+			}
+			else if (i < currentPowerGeneration)
+			{
+				powerBarImages[i].sprite = gm.PowerIcons.Unavailable;
+				powerBars[i].interactable = false;
+			}
+			else if (i >= currentPowerGeneration)
+			{
+				powerBarImages[i].sprite = gm.PowerIcons.UnavailableDisabled;
+				powerBars[i].interactable = false;
+			}
+		}
+	}
+
+	public void UpdateSystems() {
+		enginePowerBars.sys = gm.Engine;
+		enginePowerBars.UpdateNumberOfPowerBars();
+
+		fuelPowerBars.sys = gm.FuelTank;
+		fuelPowerBars.UpdateNumberOfPowerBars();
+
+		lifeSupportPowerBars.sys = gm.LifeSupport;
+		lifeSupportPowerBars.UpdateNumberOfPowerBars();
+	}
+
+	public void CopyPowerUsage(PowerGenerator gen)
     {
         // IMPLEMENT
     }
@@ -42,13 +84,20 @@ public class PowerGenerator : Subsystem {
 
     protected override void Start()
     {
+		UpdateSystems();
         base.Start();
-        UpdateUI();
+
     }
 
 	protected override void UpdateUI()
     {
 		powerTx.text = String.Format("{0}/{1}", gm.PowerUsed, currentPowerGeneration);
+
+		// Systems Power
+		enginePowerBars.UpdateUI();
+		fuelPowerBars.UpdateUI();
+		lifeSupportPowerBars.UpdateUI();
+		UpdatePowerBars();
     }
 
     protected override void RepairSystem()
@@ -73,10 +122,33 @@ public class PowerGenerator : Subsystem {
         UpdateUI();
     }
 
+	public override void ClickPower(int id)
+	{
+		if (id <= currentPowerGeneration && id != gm.PowerUsed)
+		{
+			int tempPowerLimit = currentPowerGeneration;
+			currentPowerGeneration = id;
+			gm.UpdateSystems();
+			currentPowerGeneration = tempPowerLimit;
+			UpdatePowerBars();
+		}
+		else if (id == currentPower)
+		{
+			currentPowerGeneration--;
+			gm.UpdateSystems();
+			currentPowerGeneration++;
+			UpdatePowerBars();
+		}
+		UpdateUI();
+	}
+
     // To satisfy the inheritance. Won't run unless I supply a non-zero update cycle
     protected override IEnumerator UpdateTimer()
     {
-        throw new NotImplementedException();
+		for (;;) {
+			UpdateUI();
+			yield return new WaitForSeconds(timeBetweenUpdates);
+		}
     }
 
     public override void DamageSystem()
