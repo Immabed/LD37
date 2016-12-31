@@ -10,17 +10,17 @@ public class Engine : Subsystem {
     [SerializeField]
     EngineDamage[] damageList;
 
-    // Base fuel draw per unit of power per second
     [SerializeField]
     [Range(0, 2)]
+	[Tooltip("Base fuel draw per unit of power per second")]
     float fuelEfficiency;
-    // Light years per unit of power per second
     [SerializeField]
     [Range(0, 10)]
+	[Tooltip("Light years per unit of power per second")]
     float powerEfficiency;
-    // Fractional increase in fuel draw per extra unit of power
     [SerializeField]
     [Range(0, 2)]
+	[Tooltip("Fractional increase in fuel draw per extra unit of power")]
     float fuelEfficiencyModifier;
 
     [SerializeField]
@@ -35,7 +35,7 @@ public class Engine : Subsystem {
 
     public float CurrentSpeed { get { return currentPower * powerEfficiency; } }
 
-    public float CurrentFuelDraw { get { return Mathf.Max((currentPower + fuelEfficiencyModifier * ((currentPower - 1) + (currentPower - 1) ^ 2) / 2) * fuelEfficiency, 0); } }
+	public float CurrentFuelDraw { get { return Mathf.Max((currentPower + fuelEfficiencyModifier * ((currentPower - 1) * currentPower / 2f)) * fuelEfficiency, 0); } }
 
     protected override IEnumerator UpdateTimer()
     {
@@ -48,7 +48,7 @@ public class Engine : Subsystem {
 
 	protected override void UpdateUI() {
         //speedTx.text = String.Format("Speed {0:#0.#} light years per second", CurrentSpeed);
-        //fuelEffTx.text = String.Format("Fuel Efficiency {0:#0.##} fuel per light year", (CurrentFuelDraw / CurrentSpeed));
+        fuelEffTx.text = String.Format("Fuel Efficiency {0:#0.##} fuel per light year", (CurrentFuelDraw / CurrentSpeed));
         powerUseTx.text = String.Format("{0}/{1}", currentPower, maxPower);
         UpdatePowerBars();
     }

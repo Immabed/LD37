@@ -7714,7 +7714,7 @@ MonoBehaviour:
   currentPower: 0
   currentPowerLimit: 0
   gm: {fileID: 1330485410}
-  averageTimeUntilFailure: 0
+  averageTimeUntilFailure: 1000
   id: fuel1
   nameOfSystem: Fuel Tank
   upgradeDescription: 
@@ -8904,9 +8904,9 @@ MonoBehaviour:
     isFatal: 1
   fuelEfficiency: 0.2
   powerEfficiency: 0.5
-  fuelEfficiencyModifier: 0.06666667
+  fuelEfficiencyModifier: 0.5
   speedTx: {fileID: 0}
-  fuelEffTx: {fileID: 0}
+  fuelEffTx: {fileID: 832581382}
   powerUseTx: {fileID: 793216418}
 --- !u!1 &371625015
 GameObject:
@@ -19858,7 +19858,7 @@ MonoBehaviour:
   currentPower: 0
   currentPowerLimit: 0
   gm: {fileID: 1330485410}
-  averageTimeUntilFailure: 20
+  averageTimeUntilFailure: 10
   id: life
   nameOfSystem: Life Support
   upgradeDescription: 
@@ -20787,7 +20787,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: FUEL EFFICIENCY
@@ -33849,14 +33849,14 @@ MonoBehaviour:
   currentPower: 0
   currentPowerLimit: 0
   gm: {fileID: 1330485410}
-  averageTimeUntilFailure: 0
+  averageTimeUntilFailure: 100
   id: power1
   nameOfSystem: Power
   upgradeDescription: 
   timeBetweenUpdates: 0.1
   recipes: []
   damageList: []
-  maxPowerGeneration: 6
+  maxPowerGeneration: 30
   powerTx: {fileID: 1747664043}
   enginePowerBars: {fileID: 561611513}
   fuelPowerBars: {fileID: 841730742}
@@ -35325,7 +35325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1387621663
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39946,7 +39946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1577202459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44400,7 +44400,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 0/26
@@ -49856,7 +49856,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 000

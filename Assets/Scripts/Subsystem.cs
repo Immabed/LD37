@@ -73,7 +73,7 @@ public abstract class Subsystem : MonoBehaviour {
     public int MaxPower {  get { return maxPower; } }
 	public int Cost { get { return cost; } }
 	public string Name { get { return nameOfSystem; }}
-	public string Description { get { return upgradeDescription; }}
+	public string Description { get { return upgradeDescription; } }
     public virtual float FailureChance { get { return 1 / averageTimeUntilFailure; } }
 	public SubsystemType Type { get { return type; } }
 

@@ -120,10 +120,10 @@ public class GameManager : MonoBehaviour {
     }
 
     private void OnEnable()
-    {
+	{
         UpdateSystems();
-		StartCoroutine(DamageTimer(0.1f));
 		power.UpdateSystems();
+		StartCoroutine(DamageTimer(0.1f));
     }
 
 
