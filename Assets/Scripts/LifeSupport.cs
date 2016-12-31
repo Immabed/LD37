@@ -29,8 +29,16 @@ public class LifeSupport : Subsystem {
     [SerializeField]
     Text warningLevelTx;
     [SerializeField]
-    Text statusTx;
-    [SerializeField]
+    Text airStatusTx;
+	[SerializeField]
+	GameObject repair;
+	[SerializeField]
+	Text statusTx;
+	[SerializeField]
+	Text statusDetailsTx;
+
+	// Colors
+	[SerializeField]
     Color warningColor;
     [SerializeField]
     Color dangerColor;
@@ -98,35 +106,75 @@ public class LifeSupport : Subsystem {
     {
 		base.UpdateUI();
 
+		// AIR LEVEL SLIDER, SYSTEM STATUS, TIME TILL DEATH, AIR STATUS
         airLevelIndicator.value = airLevel;
+		// AIR LEVEL DECREASING
         if (isDecreasing)
         {
+			// AIR LEVEL SLIDER HANDLE
             sliderHandle.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+			// TIME TILL DEATH
 			int timeTillDeath = (int) (airLevel / (fractionAirLossPerSec * (maxPower - currentPower) / maxPower));
             string minutes = Mathf.Floor(timeTillDeath / 60).ToString("00");
 			string seconds = (timeTillDeath % 60).ToString("00");
             timeTillDeathTx.text = String.Format("TIME UNTIL DEATH {0}:{1}", minutes, seconds);
-            statusTx.text = "AND FALLING";
+
+			// AIR STATUS
+			airStatusTx.text = "AND FALLING";
+
+			// SYSTEM STATUS
+			if (isDamaged) {
+				// DAMAGED
+				statusTx.text = "SYSTEM DAMAGED";
+				statusDetailsTx.text = "AIR LEVEL DECREASING, REPAIR SYSTEM IMMEDIATELY";
+				repair.SetActive(true);
+			}
+			else {
+				// UNDERPOWERED
+				statusTx.text = "INSUFFICIENT POWER";
+				statusDetailsTx.text = string.Format("AIR LEVEL DECREASING, SYSTEM REQUIRES {0} MORE POWER", maxPower - currentPower);
+				repair.SetActive(false);
+			}
         }
+		// SYSTEM NOMINAL
         else
         {
+			// AIR LEVEL SLIDER HANDLE
             sliderHandle.transform.rotation = Quaternion.Euler(0, 180, 0);
+
+			// AIR LEVEL INCREASING
             if (airLevel < 1)
             {
-                statusTx.text = "AND RISING";
+				// AIR STATUS
+                airStatusTx.text = "AND RISING";
+				// TIME TILL FULL
 				int timeTillFull = (int) ((1 - airLevel) / (fractionAirGainPerSec));
 				string minutes = Mathf.Floor(timeTillFull / 60).ToString("00");
 				string seconds = (timeTillFull % 60).ToString("00");
-				timeTillDeathTx.text = string.Format("TIME UNTIL FULL {0}:{1}", minutes, seconds); ;
+				timeTillDeathTx.text = string.Format("TIME UNTIL FULL {0}:{1}", minutes, seconds);
+
+				//SYSTEM STATUS
+				statusTx.text = "SYSTEM NOMINAL, AIR LEVEL LOW";
+				statusDetailsTx.text = "AIR LEVEL INCREASING TO BRING AIR PRESSURE TO NOMINAL LEVEL";
             }
+			// AIR LEVEL FULL
             else
             {
-                statusTx.text = "AND HOLDING";
+				// AIR STATUS
+                airStatusTx.text = "AND HOLDING";
+				// TIME TILL
 				timeTillDeathTx.text = "";
-            }
 
+				// SYSTEM STATUS
+				statusTx.text = "SYSTEM NOMINAL";
+				statusDetailsTx.text = "AIR LEVEL NOMINAL";
+            }
+			repair.SetActive(false);
         }
 
+
+		// COLOR AND WARNING TEXT
         if (airLevel < criticalAirFraction)
         {
             warningLevelTx.text = "DANGER";
@@ -143,14 +191,17 @@ public class LifeSupport : Subsystem {
         {
             warningLevelTx.color = goodColor;
             warningLevelTx.text = "GOOD";
-			timeTillDeathTx.color = goodColor;
-            
+			timeTillDeathTx.color = goodColor;  
         }
+
+		// PERCENT AIR
         percentAirTx.text = String.Format("{0:00}%", 100 * airLevel);
+
+		// POWER USE
 		powerUseTx.text = String.Format("{0}/{1}", currentPower, maxPower);
 		UpdatePowerBars();
-
     }
+
 
     public override void DamageSystem()
     {
