@@ -96,13 +96,15 @@ public class LifeSupport : Subsystem {
     }
 	protected override void UpdateUI()
     {
+		base.UpdateUI();
+
         airLevelIndicator.value = airLevel;
         if (isDecreasing)
         {
             sliderHandle.transform.rotation = Quaternion.Euler(0, 0, 0);
-            float timeTillDeath = airLevel / (fractionAirLossPerSec * (maxPower - currentPower) / maxPower);
+			int timeTillDeath = (int) (airLevel / (fractionAirLossPerSec * (maxPower - currentPower) / maxPower));
             string minutes = Mathf.Floor(timeTillDeath / 60).ToString("00");
-            string seconds = (timeTillDeath % 60).ToString("00");
+			string seconds = (timeTillDeath % 60).ToString("00");
             timeTillDeathTx.text = String.Format("TIME UNTIL DEATH {0}:{1}", minutes, seconds);
             statusTx.text = "AND FALLING";
         }
@@ -112,28 +114,36 @@ public class LifeSupport : Subsystem {
             if (airLevel < 1)
             {
                 statusTx.text = "AND RISING";
+				int timeTillFull = (int) ((1 - airLevel) / (fractionAirGainPerSec));
+				string minutes = Mathf.Floor(timeTillFull / 60).ToString("00");
+				string seconds = (timeTillFull % 60).ToString("00");
+				timeTillDeathTx.text = string.Format("TIME UNTIL FULL {0}:{1}", minutes, seconds); ;
             }
             else
             {
                 statusTx.text = "AND HOLDING";
+				timeTillDeathTx.text = "";
             }
-            timeTillDeathTx.text = "";
+
         }
 
         if (airLevel < criticalAirFraction)
         {
             warningLevelTx.text = "DANGER";
             warningLevelTx.color = dangerColor;
+			timeTillDeathTx.color = dangerColor;
         }
         else if (airLevel < dangerousAirFraction)
         {
             warningLevelTx.text = "WARNING";
             warningLevelTx.color = warningColor;
+			timeTillDeathTx.color = warningColor;
         }
         else
         {
             warningLevelTx.color = goodColor;
             warningLevelTx.text = "GOOD";
+			timeTillDeathTx.color = goodColor;
             
         }
         percentAirTx.text = String.Format("{0:00}%", 100 * airLevel);

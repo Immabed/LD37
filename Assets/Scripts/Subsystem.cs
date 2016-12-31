@@ -13,6 +13,13 @@ public abstract class Subsystem : MonoBehaviour {
     Button[] powerBars;
     Image[] powerBarImages;
 
+	[SerializeField]
+	RepairRecipeTx menuRepairTx;
+	[SerializeField]
+	RepairRecipeTx repairMenuRepairTx;
+	[SerializeField]
+	Text repairMenuTx;
+
     [SerializeField]
 	[Tooltip("Only applicable if a level 2 or better subsystem")]
 	protected Vector2 costRange;
@@ -74,7 +81,18 @@ public abstract class Subsystem : MonoBehaviour {
 
     protected abstract IEnumerator UpdateTimer();
 
-	protected abstract void UpdateUI();
+	protected virtual void UpdateUI() {
+		if (menuRepairTx.HasTextObjects && repairMenuRepairTx.HasTextObjects) {
+			menuRepairTx.SparePartsNeededTx.text = currentRecipe.SparePartsNeeded.ToString();
+			repairMenuRepairTx.SparePartsNeededTx.text = currentRecipe.SparePartsNeeded.ToString();
+
+			menuRepairTx.ComputersNeededTx.text = currentRecipe.ComputersNeeded.ToString();
+			repairMenuRepairTx.ComputersNeededTx.text = currentRecipe.ComputersNeeded.ToString();
+
+			menuRepairTx.PowerCellsNeededTx.text = currentRecipe.PowerCellsNeeded.ToString();
+			repairMenuRepairTx.PowerCellsNeededTx.text = currentRecipe.PowerCellsNeeded.ToString();
+		}
+	}
 
 	public void Deactivate() {
 		StopCoroutine(co);
@@ -223,6 +241,8 @@ public abstract class Subsystem : MonoBehaviour {
     protected virtual void RepairSystem()
     {
         isDamaged = false;
+		repairMenu.SetActive(false);
+		menu.SetActive(true);
     }
 
     public abstract void DamageSystem();
@@ -341,3 +361,18 @@ public struct RepairRecipe
 }
 
 public enum SubsystemType {NONETYPE, ENGINE, FUEL, POWER, CARGO, LIFESUPPORT, STORAGE, COCKPIT, DATABANK}
+
+[System.Serializable]
+public struct RepairRecipeTx {
+	[SerializeField]
+	Text sparePartsNeededTx;
+	[SerializeField]
+	Text powerCellsNeededTx;
+	[SerializeField]
+	Text computersNeededTx;
+
+	public Text SparePartsNeededTx { get { return sparePartsNeededTx; } }
+	public Text PowerCellsNeededTx { get { return powerCellsNeededTx; } }
+	public Text ComputersNeededTx { get { return computersNeededTx; } }
+	public bool HasTextObjects { get { return sparePartsNeededTx != null && powerCellsNeededTx != null && computersNeededTx != null;}}
+}

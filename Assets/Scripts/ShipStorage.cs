@@ -72,7 +72,7 @@ public class ShipStorage : Subsystem {
 
         if (playerIsNearby && pc != null)
         {
-            Debug.Log("Player is nearby");
+            //Debug.Log("Player is nearby");
             returnResourceBt.interactable = pc.HasItem;
             if (pc.HasItem)
             {

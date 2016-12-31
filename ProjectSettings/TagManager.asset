@@ -45,11 +45,11 @@ TagManager:
   - name: Background
     uniqueID: 396119543
     locked: 0
-  - name: Ship Floor
-    uniqueID: 1278966831
-    locked: 0
   - name: SubSystems
     uniqueID: 2031037473
+    locked: 0
+  - name: Ship Floor
+    uniqueID: 1278966831
     locked: 0
   - name: Player
     uniqueID: 758802393
