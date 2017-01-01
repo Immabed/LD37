@@ -145,22 +145,22 @@ public abstract class Subsystem : MonoBehaviour {
 				powerBarImages[i].sprite = gm.PowerIcons.InUse;
                 powerBars[i].interactable = true;
             }
-			else if (i < currentPowerLimit && i - currentPower + 1 <= gm.EnergyAvailable())
+			else if (i < currentPowerLimit && i - currentPower + 1 <= gm.PowerAvailable)
             {
 				powerBarImages[i].sprite = gm.PowerIcons.Available;
                 powerBars[i].interactable = true;
             }
-			else if (i < currentPowerLimit && i - currentPower >= gm.EnergyAvailable())
+			else if (i < currentPowerLimit && i - currentPower >= gm.PowerAvailable)
 			{
 				powerBarImages[i].sprite = gm.PowerIcons.Unavailable;
 				powerBars[i].interactable = false;
 			}
-            else if (i >= currentPowerLimit && i - currentPower + 1 <= gm.EnergyAvailable())
+            else if (i >= currentPowerLimit && i - currentPower + 1 <= gm.PowerAvailable)
 			{
 				powerBarImages[i].sprite = gm.PowerIcons.AvailableDisabled;
 				powerBars[i].interactable = false;
 			}
-			else if (i >= currentPowerLimit && i - currentPower >= gm.EnergyAvailable())
+			else if (i >= currentPowerLimit && i - currentPower >= gm.PowerAvailable)
 			{
 				powerBarImages[i].sprite = gm.PowerIcons.UnavailableDisabled;
 				powerBars[i].interactable = false;
@@ -197,9 +197,9 @@ public abstract class Subsystem : MonoBehaviour {
         {
             currentPower = currentPowerLimit;
         }
-        if (gm.EnergyAvailable() > 0)
+        if (gm.PowerAvailable > 0)
         {
-            currentPower += Mathf.Min(gm.EnergyAvailable(), currentPowerLimit - currentPower);
+            currentPower += Mathf.Min(gm.PowerAvailable, currentPowerLimit - currentPower);
         } 
         //gm.UpdateSystems();
         //TODO - implement more power management

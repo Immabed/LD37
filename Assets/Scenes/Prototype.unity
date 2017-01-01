@@ -7531,7 +7531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 321841499}
   - component: {fileID: 321841500}
-  m_Layer: 18
+  m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25580,7 +25580,7 @@ GameObject:
   - component: {fileID: 986640857}
   - component: {fileID: 986640858}
   - component: {fileID: 986640855}
-  m_Layer: 18
+  m_Layer: 0
   m_Name: ship
   m_TagString: Collidable
   m_Icon: {fileID: 0}
@@ -39946,7 +39946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1577202459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47470,7 +47470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1875651575}
   - component: {fileID: 1875651576}
-  m_Layer: 18
+  m_Layer: 0
   m_Name: Consoles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54057,7 +54057,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2114009589}
   - component: {fileID: 2114009590}
-  m_Layer: 18
+  m_Layer: 0
   m_Name: Engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54583,11 +54583,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 1747664042}
-  - {fileID: 1505420498}
   - {fileID: 1166978199}
   - {fileID: 1470591650}
   - {fileID: 723575562}
   - {fileID: 1550325791}
+  - {fileID: 1505420498}
   - {fileID: 105025325}
   - {fileID: 1330018212}
   - {fileID: 2080470982}

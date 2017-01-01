@@ -42,9 +42,19 @@ public class PowerGenerator : Subsystem {
 				powerBarImages[i].sprite = gm.PowerIcons.InUse;
 				powerBars[i].interactable = true;
 			}
+			else if (i < currentPowerGeneration && i < gm.PowerDrawAvailable)
+			{
+				powerBarImages[i].sprite = gm.PowerIcons.Available;
+				powerBars[i].interactable = true;
+			}
 			else if (i < currentPowerGeneration)
 			{
 				powerBarImages[i].sprite = gm.PowerIcons.Unavailable;
+				powerBars[i].interactable = false;
+			}
+			else if (i >= currentPowerGeneration && i < gm.PowerDrawAvailable)
+			{
+				powerBarImages[i].sprite = gm.PowerIcons.AvailableDisabled;
 				powerBars[i].interactable = false;
 			}
 			else if (i >= currentPowerGeneration)
@@ -118,7 +128,7 @@ public class PowerGenerator : Subsystem {
                 isDamaged = false;
             }
         }
-        gm.UpdateSystems();
+        gm.CheckPowerDeficit();
         UpdateUI();
     }
 
@@ -128,15 +138,18 @@ public class PowerGenerator : Subsystem {
 		{
 			int tempPowerLimit = currentPowerGeneration;
 			currentPowerGeneration = id;
-			gm.UpdateSystems();
+			gm.IncreasePowerUse();
+			gm.CheckPowerDeficit();
 			currentPowerGeneration = tempPowerLimit;
 			UpdatePowerBars();
 		}
-		else if (id == currentPower)
+		else if (id == gm.PowerUsed)
 		{
-			currentPowerGeneration--;
-			gm.UpdateSystems();
-			currentPowerGeneration++;
+			int tempPowerLimit = currentPowerGeneration;
+			currentPowerGeneration = id - 1;
+			gm.IncreasePowerUse();
+			gm.CheckPowerDeficit();
+			currentPowerGeneration = tempPowerLimit;
 			UpdatePowerBars();
 		}
 		UpdateUI();
@@ -169,7 +182,7 @@ public class PowerGenerator : Subsystem {
                 gm.EndGame("You lost power. You can't even call for help, because that would take power. Congrats, idiot.");
             }
         }
-        gm.UpdateSystems();
+        gm.CheckPowerDeficit();
         UpdateUI();
     }
 

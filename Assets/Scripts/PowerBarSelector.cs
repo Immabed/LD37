@@ -71,22 +71,22 @@ public class PowerBarSelector : MonoBehaviour {
 					powerBarImages[i].sprite = gm.PowerIcons.InUse;
 					powerBars[i].interactable = true;
 				}
-				else if (i < sys.CurrentPowerLimit && i - sys.CurrentPower + 1 <= gm.EnergyAvailable())
+				else if (i < sys.CurrentPowerLimit && i - sys.CurrentPower + 1 <= gm.PowerAvailable)
 				{
 					powerBarImages[i].sprite = gm.PowerIcons.Available;
 					powerBars[i].interactable = true;
 				}
-				else if (i < sys.CurrentPowerLimit && i - sys.CurrentPower >= gm.EnergyAvailable())
+				else if (i < sys.CurrentPowerLimit && i - sys.CurrentPower >= gm.PowerAvailable)
 				{
 					powerBarImages[i].sprite = gm.PowerIcons.Unavailable;
 					powerBars[i].interactable = false;
 				}
-				else if (i >= sys.CurrentPowerLimit && i - sys.CurrentPower + 1 <= gm.EnergyAvailable())
+				else if (i >= sys.CurrentPowerLimit && i - sys.CurrentPower + 1 <= gm.PowerAvailable)
 				{
 					powerBarImages[i].sprite = gm.PowerIcons.AvailableDisabled;
 					powerBars[i].interactable = false;
 				}
-				else if (i >= sys.CurrentPowerLimit && i - sys.CurrentPower >= gm.EnergyAvailable())
+				else if (i >= sys.CurrentPowerLimit && i - sys.CurrentPower >= gm.PowerAvailable)
 				{
 					powerBarImages[i].sprite = gm.PowerIcons.UnavailableDisabled;
 					powerBars[i].interactable = false;

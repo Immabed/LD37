@@ -34,6 +34,7 @@ public class CargoSystem : Subsystem {
 			return powerNeed;
 		}
 	}
+	public int CurrentPowerDrawLimit { get { return PowerNeed < currentPowerLimit ? PowerNeed : currentPowerLimit; } }
 
     public int CargoRoomAvailable { get {
             UpdateCargoUsed();
@@ -102,7 +103,7 @@ public class CargoSystem : Subsystem {
             cargo[cargoUsed] = car;
             cargoUsed += car.Size;
             UpdatePower();
-            gm.UpdateSystems();
+            gm.CheckPowerDeficit();
         } 
     }
 
@@ -125,7 +126,7 @@ public class CargoSystem : Subsystem {
     {
         base.UpdatePower ();
 
-        int powerAvailable = Mathf.Min(currentPowerLimit - currentPower, gm.EnergyAvailable());
+		int powerAvailable = Mathf.Min(currentPowerLimit - currentPower, gm.PowerAvailable);
         // Distribute power
         if (powerAvailable > 0) {
             for (int i = 0; i < cargoUsed; i++) {
@@ -146,7 +147,7 @@ public class CargoSystem : Subsystem {
             i += cargo[i].Size - 1;
         }
 
-        gm.UpdateSystems();
+        gm.CheckPowerDeficit();
 	}
 
 

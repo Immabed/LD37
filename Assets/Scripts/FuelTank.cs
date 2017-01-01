@@ -83,7 +83,7 @@ public class FuelTank : Subsystem {
 
 	protected override void UpdateUI()
     {
-        fuelFlow = gm.GetFuelUse();
+        fuelFlow = gm.FuelUse;
         fuelLevel -= gm.TimeScale * (fuelFlow + fuelLoss) * (Time.time - timeOfLastFuelUpdate);
         timeOfLastFuelUpdate = Time.time;
 
