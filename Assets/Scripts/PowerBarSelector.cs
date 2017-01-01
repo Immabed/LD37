@@ -23,12 +23,8 @@ public class PowerBarSelector : MonoBehaviour {
 
 	float xPos;
 
-	float xSep = 50f;
+	float xSep = 100f;
 
-
-	private void Awake() {
-		xPos = powerAmountTx.gameObject.transform.localPosition.x;
-	}
 
 	public void UpdateNumberOfPowerBars() 
 	{
@@ -55,7 +51,7 @@ public class PowerBarSelector : MonoBehaviour {
 					powerBarImages[i].enabled = false;
 				}
 			}
-			powerAmountTx.gameObject.transform.localPosition = new Vector3(xPos + sys.MaxPower * xSep, 
+			powerAmountTx.gameObject.transform.localPosition = new Vector3(powerBars[sys.MaxPower-1].gameObject.transform.localPosition.x + xSep, 
 			                                                          powerAmountTx.gameObject.transform.localPosition.y, 
 			                                                          powerAmountTx.gameObject.transform.localPosition.z);
 			UpdateUI();
