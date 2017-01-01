@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class PowerBarSelector : MonoBehaviour {
 
 	[SerializeField]
-	Text systemName;
+	Text systemNameTx;
 	[SerializeField]
 	Button[] powerBars;
+	[SerializeField]
+	Text powerAmountTx;
 	Image[] powerBarImages;
 
 	public Subsystem sys { get; set;}
@@ -19,18 +21,17 @@ public class PowerBarSelector : MonoBehaviour {
 	[SerializeField]
 	GameManager gm;
 
+	float xPos;
 
-	/*private void Awake() {
-		powerBarImages = new Image[powerBars.Length];
-		for (int i = 0; i < powerBars.Length; i++)
-		{
-			powerBarImages[i] = powerBars[i].gameObject.GetComponent<Image>();
-		}
-	}*/
+	float xSep = 50f;
+
+
+	private void Awake() {
+		xPos = powerAmountTx.gameObject.transform.localPosition.x;
+	}
 
 	public void UpdateNumberOfPowerBars() 
 	{
-
 		if (powerBarImages == null || powerBarImages.Length != powerBars.Length) {
 			powerBarImages = new Image[powerBars.Length];
 			for (int i = 0; i < powerBars.Length; i++)
@@ -43,7 +44,7 @@ public class PowerBarSelector : MonoBehaviour {
 
 		if (sys != null) 
 		{
-			systemName.text = sys.Name;
+			systemNameTx.text = sys.Name;
 			for (int i = 0; i < powerBars.Length; i++) {
 				if (i < sys.MaxPower) {
 					powerBars[i].enabled = true;
@@ -54,6 +55,9 @@ public class PowerBarSelector : MonoBehaviour {
 					powerBarImages[i].enabled = false;
 				}
 			}
+			powerAmountTx.gameObject.transform.localPosition = new Vector3(xPos + sys.MaxPower * xSep, 
+			                                                          powerAmountTx.gameObject.transform.localPosition.y, 
+			                                                          powerAmountTx.gameObject.transform.localPosition.z);
 			UpdateUI();
 		}
 		else {
@@ -92,6 +96,7 @@ public class PowerBarSelector : MonoBehaviour {
 					powerBars[i].interactable = false;
 				}
 			}
+			powerAmountTx.text = string.Format("{0}/{1}", sys.CurrentPower, sys.MaxPower);
 		}
 	}
 
