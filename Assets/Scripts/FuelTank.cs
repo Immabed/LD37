@@ -88,7 +88,7 @@ public class FuelTank : Subsystem {
         timeOfLastFuelUpdate = Time.time;
 
         fuelLevel = Mathf.Min(fuelLevel, maxFuelCapacity);
-        fuelTx.text = String.Format("{0:###}/{1:###}", fuelLevel, maxFuelCapacity);
+        fuelTx.text = String.Format("{0:##0}/{1:##0}", fuelLevel, maxFuelCapacity);
         fuelRateTx.text = String.Format("{0:#0.00} fuel/sec", TotalFuelFlowRate);
         fuelLevelSlider.fillAmount = fuelLevel / maxFuelCapacity;
 

@@ -275,11 +275,15 @@ public class GameManager : MonoBehaviour {
         stationNextDestinationTx.text = String.Format("{0} light years", distanceToNextStation);
         
 		// Subsystem info
-		engineUpgradeLevelTx.text = String.Format("{0} - {1} power.", engine.Name, engine.MaxPower);
-        fuelUpgradeLevelTx.text = String.Format("{0} - {1}/{2} fuel", fuel.Name, fuel.FuelLevel, fuel.FuelCapacity);
-        cargoLevelTx.text = String.Format("{0} - {1}/{2} cargo capacity", cargo.Name, cargo.CargoCapacity - cargo.CargoRoomAvailable, cargo.CargoCapacity);
-        powerLevelTx.text = String.Format("{0} - {1}/{2} power output", power.Name, power.CurrentPowerGeneration, power.MaxPowerGeneration);
-        storageLevelTx.text = String.Format("{0} - {1}/{2} capacity", storage.Name, storage.MaxCapacity - storage.RoomLeft, storage.MaxCapacity);
+		engineUpgradeLevelTx.text = String.Format("{0}", engine.MaxPower);
+        fuelUpgradeLevelTx.text = String.Format("{0:##0}/{1}", fuel.FuelLevel, fuel.FuelCapacity);
+        cargoLevelTx.text = String.Format("{0}/{1}", cargo.CargoCapacity - cargo.CargoRoomAvailable, cargo.CargoCapacity);
+		powerLevelTx.text = String.Format("{0}/{1}", PowerUsed, power.MaxPowerGeneration);
+        storageLevelTx.text = String.Format("{0}/{1}", storage.MaxCapacity - storage.RoomLeft, storage.MaxCapacity);
+
+		foreach (Vendor ven in vendorObjects) {
+			ven.UpdateSelectable();
+		}
     }
 
 	/// <summary>
@@ -293,18 +297,16 @@ public class GameManager : MonoBehaviour {
 			// Pause time
             timeScale = 0;
 
+			// Collect Cargo TODO
+			credits += cargo.CollectCargo(); // Implement something interesting
+
 			// Populate vendors
             foreach (Vendor vendor in vendorObjects)
             {
                 vendor.PickSelection();
             }
 			// Populate station name
-            stationNameTx.text = stationNames[(int)UnityEngine.Random.Range(0, stationNames.Length)];
-
-            // Collect Cargo TODO
-            //credits += cargo.CollectCargo(); // Implement something interesting
-                                             // DO SOMETHING
-                                             // SET NEXT DESTINATION DISTANCE
+            stationNameTx.text = stationNames[(int)UnityEngine.Random.Range(0, stationNames.Length)];                               
 
 			// Determine next station (distance)
             distanceToNextStation = (int)(baseContractDistance * (Difficulty / contractDistanceDoubledAtDifficulty + 1));

@@ -15,6 +15,7 @@ public class CargoSystem : Subsystem {
 	int cargoCapacity;
 	int cargoUsed;
 
+	[SerializeField]
 	Cargo[] cargo;
 	int[] powerDistribution;
 
@@ -41,6 +42,7 @@ public class CargoSystem : Subsystem {
             return cargoCapacity - cargoUsed;
         } }
 
+
     private void UpdateCargoUsed()
     {
         cargoUsed = 0;
@@ -60,7 +62,7 @@ public class CargoSystem : Subsystem {
 
 	protected override void UpdateUI()
     {
-        for (int i = 0; i < cargoCapacity; i++)
+        /* for (int i = 0; i < cargoCapacity; i++)
         {
             if (cargo[i] != null && !cargoSpriteLocations[i].sprite.Equals(cargo[i].Sprite))
             {
@@ -70,7 +72,7 @@ public class CargoSystem : Subsystem {
             {
                 cargoSpriteLocations[i].sprite = null;
             }
-        }
+        } */
     }
 
 
@@ -84,16 +86,24 @@ public class CargoSystem : Subsystem {
             Debug.LogWarning(String.Format("Cargo System {0} does not have equal number of repair recipes({1}) and damages({2}). ", gameObject.name, recipes.Length, damageList.Length));
         }
         cargo = new Cargo[cargoCapacity];
+		powerDistribution = new int[cargoCapacity];
     }
 
+	/// <summary>
+	/// Takes the cargo from another cargo system.
+	/// </summary>
+	/// <param name="cargo">Cargo System to take Cargo from</param>
     public void GetCargoFromCargoSystem(CargoSystem cargo)
     {
         cargoUsed = 0;
+		// TODO - Check to make sure cargo all fits.
         for (int i = 0; i < cargo.cargoUsed; i++)
         {
             AddCargo(cargo.cargo[i]);
             i += cargo.cargo[i].Size - 1;
         }
+		// Remove cargo.
+		cargo.CollectCargo();
     }
 
     public void AddCargo(Cargo car)
@@ -117,6 +127,9 @@ public class CargoSystem : Subsystem {
             cargo[i] = null;
             i += step;
         }
+		for (int i = 0; i < powerDistribution.Length; i++) {
+			powerDistribution[i] = 0;
+		}
         UpdateUI();
         return creditsEarned;
     }
