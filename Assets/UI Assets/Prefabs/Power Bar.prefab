@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222707519608647856}
   - component: {fileID: 114497504483344696}
   - component: {fileID: 114877322980114682}
+  - component: {fileID: 114278519406557618}
   m_Layer: 5
   m_Name: Power Bar
   m_TagString: Untagged
@@ -29,6 +30,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114278519406557618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749195620857468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fcde3ef4e34a486a9c5678c6980a470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114497504483344696
 MonoBehaviour:
   m_ObjectHideFlags: 1

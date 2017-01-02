@@ -117,21 +117,23 @@ public class CargoSystem : Subsystem {
         } 
     }
 
-    public int CollectCargo()
+	public Vector2 CollectCargo()
     {
         int creditsEarned = 0;
+		int cargoDelivered = 0;
         for (int i = 0; i < cargoUsed; i++)
         {
             creditsEarned += cargo[i].CurrentCreditValue;
             int step = cargo[i].Size - 1;
             cargo[i] = null;
+			cargoDelivered++;
             i += step;
         }
 		for (int i = 0; i < powerDistribution.Length; i++) {
 			powerDistribution[i] = 0;
 		}
         UpdateUI();
-        return creditsEarned;
+		return new Vector2(creditsEarned, cargoDelivered);
     }
 
     // Need special handling of power due to cargo components needing special care.

@@ -298,7 +298,9 @@ public class GameManager : MonoBehaviour {
             timeScale = 0;
 
 			// Collect Cargo TODO
-			credits += cargo.CollectCargo(); // Implement something interesting
+			var cargoDelivery = cargo.CollectCargo(); // Implement something interesting
+			cargoDelivered += (int)cargoDelivery.y;
+			credits += (int)cargoDelivery.x;
 
 			// Populate vendors
             foreach (Vendor vendor in vendorObjects)
