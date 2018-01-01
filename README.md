@@ -4,9 +4,9 @@ Entry to Ludum Dare 37 (A 72 hour game jam)
 ## Summary
 This is an attempted entry to Ludum Dare 37, a 72 hour game jam competition. There were three main contributors, and two others who provided some input and a few assets.
 
-The working title for the game is Breaker Breaker Space Trucker, and it is a game where you manage a space fairing cargo ship, travelling from space station to space station, keeping systems functional, upgrading your ship, accepting cargo contracts, and buying fuel.
+The working title for the game is Breaker Breaker Space Trucker, and it is a game where you manage a space faring cargo ship, travelling from space station to space station, keeping systems functional, upgrading your ship, accepting cargo contracts, and buying fuel.
 
-The game was not finished during the game jam, and though some work has been done since, remains unfinished. The majority of the game logix is in place, but the UI is not fully connected, and the game is not balanced.
+The game was not finished during the game jam, and though some work has been done since, it remains unfinished. The majority of the game logic is in place, but the UI is not fully implemented, and the game is extremely unbalanced.
 
 ## Technical Details
 This game was developed in the Unity game engine, version 5.5.0. It should be able to be run in that version of the Unity editor.
